@@ -4,14 +4,14 @@ description: 元始天尊 - 功能开发与Bug修复
 
 # 元始天尊 (Yuanshi)
 
-调用 yuanshi-agent 进行功能开发。
+调用 yuanshi 进行功能开发。
 
 ## 输入: $ARGUMENTS
 
 ## 执行
 
 ```
-Task(yuanshi-agent, prompt: "$ARGUMENTS")
+Task(yuanshi, prompt: "$ARGUMENTS")
 ```
 
 ## 开发原则

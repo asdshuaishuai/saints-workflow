@@ -206,14 +206,14 @@ saints-workflow/
 │   └── bagua.md             # 上下文
 │
 ├── agents/                   # 自定义 Agents
-│   ├── taiqing-agent.md     # 主控 (opus)
-│   ├── taig-agent.md        # 原子化 (haiku)
-│   ├── fuxi-agent.md        # 增强 (sonnet)
-│   ├── yuanshi-agent.md     # 开发 (sonnet)
-│   ├── lingbao-agent.md     # 架构 (opus)
-│   ├── nva-agent.md         # 测试 (haiku)
-│   ├── puti-agent.md        # 审查 (opus)
-│   └── tiandao-agent.md     # 监管 (sonnet)
+│   ├── taiqing.md     # 主控 (opus)
+│   ├── taig.md        # 原子化 (haiku)
+│   ├── fuxi.md        # 增强 (sonnet)
+│   ├── yuanshi.md     # 开发 (sonnet)
+│   ├── lingbao.md     # 架构 (opus)
+│   ├── nva.md         # 测试 (haiku)
+│   ├── puti.md        # 审查 (opus)
+│   └── tiandao.md     # 监管 (sonnet)
 │
 ├── skills/                   # Agent Skills
 │   └── bagua/

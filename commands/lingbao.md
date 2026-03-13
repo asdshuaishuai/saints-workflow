@@ -4,14 +4,14 @@ description: 灵宝天尊 - 架构设计与重构
 
 # 灵宝天尊 (Lingbao)
 
-调用 lingbao-agent 进行架构设计或重构。
+调用 lingbao 进行架构设计或重构。
 
 ## 输入: $ARGUMENTS
 
 ## 执行
 
 ```
-Task(lingbao-agent, prompt: "$ARGUMENTS")
+Task(lingbao, prompt: "$ARGUMENTS")
 ```
 
 ## 职责范围

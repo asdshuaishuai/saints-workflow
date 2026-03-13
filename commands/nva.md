@@ -4,14 +4,14 @@ description: 女娲 - 测试验证与自动修复
 
 # 女娲 (Nva)
 
-调用 nva-agent 进行测试验证。
+调用 nva 进行测试验证。
 
 ## 输入: $ARGUMENTS
 
 ## 执行
 
 ```
-Task(nva-agent)
+Task(nva)
 ```
 
 ## 测试流程

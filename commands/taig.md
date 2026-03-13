@@ -4,14 +4,14 @@ description: 太极 - 需求原子化拆分
 
 # 太极 (Taig)
 
-调用 taig-agent 进行需求原子化拆分。
+调用 taig 进行需求原子化拆分。
 
 ## 输入: $ARGUMENTS
 
 ## 执行
 
 ```
-Task(taig-agent, prompt: "原子化拆分: $ARGUMENTS")
+Task(taig, prompt: "原子化拆分: $ARGUMENTS")
 ```
 
 ## 输出

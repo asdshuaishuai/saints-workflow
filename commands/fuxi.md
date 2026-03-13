@@ -4,7 +4,7 @@ description: 伏羲 - 需求增强与上下文收集
 
 # 伏羲 (Fuxi)
 
-调用 fuxi-agent 进行需求增强。
+调用 fuxi 进行需求增强。
 
 ## 输入: $ARGUMENTS
 
@@ -26,7 +26,7 @@ description: 伏羲 - 需求增强与上下文收集
 ## 执行
 
 ```
-Task(fuxi-agent, prompt: "增强方案: $ARGUMENTS")
+Task(fuxi, prompt: "增强方案: $ARGUMENTS")
 ```
 
 ## 输出

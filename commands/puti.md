@@ -4,14 +4,14 @@ description: 菩提 - 代码审查与质量检查
 
 # 菩提 (Puti)
 
-调用 puti-agent 进行代码审查。
+调用 puti 进行代码审查。
 
 ## 输入: $ARGUMENTS
 
 ## 执行
 
 ```
-Task(puti-agent)
+Task(puti)
 ```
 
 ## 审查维度
