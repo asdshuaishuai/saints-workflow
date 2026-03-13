@@ -1,12 +1,14 @@
 # 圣人工作流 (Saints Workflow)
 
-基于道教神话的智能开发协作系统
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+基于道教神话的 Claude Code 插件 - 智能开发协作系统
 
 ---
 
 ## 概述
 
-圣人工作流是一个完整的开发协作系统，包含7个阶段的工作流程：
+圣人工作流是一个完整的 Claude Code 插件，包含 7 个阶段的开发工作流程：
 
 ```
 [1] 规划 → [2] 拆分增强 → [3] 开发 → [4] 测试 → [5] 审查 → [6] 确认 → [7] 增强修复
@@ -17,6 +19,8 @@
 - **动态模型分配**: 根据任务复杂度自动选择模型 (opus/sonnet/haiku)
 - **并行任务识别**: 自动识别可并行执行的任务
 - **智能流程简化**: 简单任务自动跳过不必要阶段
+- **多语言支持**: 支持 10+ 编程语言 + WebSearch 动态学习
+- **编辑钩子**: 自动保护关键文件、备份配置、语法验证
 
 ---
 
@@ -31,10 +35,9 @@
                            │
                            ▼
                 ┌─────────────────┐
-                │ 太极 (法宝)      │
-                │ + 伏羲 (圣人)    │
-                │ model: haiku    │
-                │ + sonnet        │
+                │ 太极 (原子化)    │
+                │ + 伏羲 (增强)    │
+                │ haiku + sonnet  │
                 └────────┬────────┘
                            │
             ┌──────────────┼──────────────┐
@@ -42,7 +45,7 @@
             ▼              ▼              ▼
       ┌──────────┐  ┌──────────┐  ┌──────────┐
       │ 灵宝天尊  │  │ 元始天尊  │  │   ...    │
-      │ (重构)   │  │ (开发)   │  │          │
+      │ (架构)   │  │ (开发)   │  │          │
       │  opus    │  │  sonnet  │  │          │
       └────┬─────┘  └────┬─────┘  └──────────┘
            │             │
@@ -65,35 +68,23 @@
                 ▼
            ┌──────────┐
            │ 用户确认  │
-           └────┬─────┘
-                │
-        ┌───────┴───────┐
-        │               │
-        ▼               ▼
-     [通过]          [不通过]
-                        │
-                        ▼
-              ┌─────────────────┐
-              │ 伏羲增强+女娲修复 │
-              └────────┬────────┘
-                       │
-                       └─→ 返回测试
+           └──────────┘
 ```
 
 ---
 
 ## 圣人列表与模型分配
 
-| 圣人 | 角色 | 阶段 | 模型 | 命令 |
-|------|------|:----:|:----:|------|
-| 太清天尊 | 主控 | [1] | **opus** | `/taiqing` |
-| 太极 | 原子化 | [2] | **haiku** | `/taig` |
-| 伏羲 | 增强 | [2][7] | sonnet | `/fuxi` |
-| 元始天尊 | 开发 | [3] | sonnet | `/yuanshi` |
-| 灵宝天尊 | 重构 | [3] | **opus** | `/lingbao` |
-| 女娲 | 测试/修复 | [4][7] | **haiku** | `/nva` |
-| 菩提 | 审查 | [5] | **opus** | `/puti` |
-| 天道 | 监管 | - | sonnet | (内部) |
+| 圣人 | 角色 | 阶段 | 模型 |
+|------|------|:----:|:----:|
+| 太清天尊 | 主控协调 | [1] | **opus** |
+| 太极 | 需求原子化 | [2] | **haiku** |
+| 伏羲 | 方案增强 | [2][7] | sonnet |
+| 元始天尊 | 功能开发 | [3] | sonnet |
+| 灵宝天尊 | 架构设计 | [3] | **opus** |
+| 女娲 | 测试验证 | [4] | **haiku** |
+| 菩提 | 代码审查 | [5] | **opus** |
+| 天道 | 流程监管 | - | sonnet |
 
 ---
 
@@ -119,39 +110,79 @@ L3-复杂任务:
 
 ---
 
-## 快速开始
+## 安装
+
+### 方法1: 通过市场安装（推荐）
 
 ```bash
-# 完整工作流（自动评估复杂度）
-/saints 实现用户登录功能
+# 在 Claude Code 中运行
+/plugin install https://gitee.com/skyRules/saints-workflow.git
+```
 
-# 单独调用
-/taiqing plan    # 仅规划
-/taig 拆分任务   # 原子化拆分
-/fuxi 增强需求   # 方案增强
-/yuanshi 开发    # 开发
-/lingbao 重构    # 架构设计
-/nva             # 测试
-/puti            # 审查
-/bagua           # 上下文收集
+### 方法2: 手动安装
+
+```bash
+# 克隆到 Claude Code 插件缓存目录
+git clone https://gitee.com/skyRules/saints-workflow.git \
+  ~/.claude/plugins/cache/local/saints-workflow/1.0.0
+```
+
+然后在 `~/.claude/plugins/installed_plugins.json` 中添加：
+
+```json
+{
+  "plugins": {
+    "saints-workflow@local": [
+      {
+        "scope": "user",
+        "installPath": "/home/你的用户名/.claude/plugins/cache/local/saints-workflow/1.0.0",
+        "version": "1.0.0"
+      }
+    ]
+  }
+}
+```
+
+### 方法3: 使用 --plugin-dir 测试
+
+```bash
+# 克隆仓库
+git clone https://gitee.com/skyRules/saints-workflow.git
+
+# 使用 --plugin-dir 加载
+claude --plugin-dir ./saints-workflow
 ```
 
 ---
 
-## 安装
+## 使用方法
 
-### 方法1: 项目级安装
+> **注意**: 插件命令需要使用命名空间前缀 `saints-workflow:`
 
-```bash
-# 复制到项目 .claude/plugins/ 目录
-cp -r saints-workflow /path/to/project/.claude/plugins/
+### 完整工作流
+
+```
+/saints-workflow:saints 实现用户登录功能
 ```
 
-### 方法2: 全局安装
+### 单独调用
 
-```bash
-# 复制到全局 plugins 目录
-cp -r saints-workflow ~/.claude/plugins/
+| 命令 | 功能 | 示例 |
+|------|------|------|
+| `/saints-workflow:saints` | 完整工作流 | `/saints-workflow:saints 实现用户登录` |
+| `/saints-workflow:taiqing` | 仅规划 | `/saints-workflow:taiqing 分析API设计` |
+| `/saints-workflow:taig` | 原子化拆分 | `/saints-workflow:taig 拆分登录模块` |
+| `/saints-workflow:fuxi` | 方案增强 | `/saints-workflow:fuxi 增强需求` |
+| `/saints-workflow:yuanshi` | 功能开发 | `/saints-workflow:yuanshi 修复登录bug` |
+| `/saints-workflow:lingbao` | 架构设计 | `/saints-workflow:lingbao 重构认证模块` |
+| `/saints-workflow:nva` | 测试验证 | `/saints-workflow:nva` |
+| `/saints-workflow:puti` | 代码审查 | `/saints-workflow:puti` |
+| `/saints-workflow:bagua` | 上下文收集 | `/saints-workflow:bagua 用户模块` |
+
+### 重载插件
+
+```
+/reload-plugins
 ```
 
 ---
@@ -161,20 +192,20 @@ cp -r saints-workflow ~/.claude/plugins/
 ```
 saints-workflow/
 ├── .claude-plugin/
-│   └── plugin.json          # 插件元信息
-├── README.md                 # 本文档
+│   └── plugin.json          # 插件清单
 │
-├── commands/                 # 命令定义
-│   ├── saints.md            # 主入口 (轻量)
+├── commands/                 # Slash Commands
+│   ├── saints.md            # 主入口
 │   ├── taiqing.md           # 规划
 │   ├── taig.md              # 拆分
 │   ├── fuxi.md              # 增强
 │   ├── yuanshi.md           # 开发
-│   ├── lingbao.md           # 重构
+│   ├── lingbao.md           # 架构
 │   ├── nva.md               # 测试
-│   └── puti.md              # 审查
+│   ├── puti.md              # 审查
+│   └── bagua.md             # 上下文
 │
-├── agents/                   # 代理定义
+├── agents/                   # 自定义 Agents
 │   ├── taiqing-agent.md     # 主控 (opus)
 │   ├── taig-agent.md        # 原子化 (haiku)
 │   ├── fuxi-agent.md        # 增强 (sonnet)
@@ -184,13 +215,17 @@ saints-workflow/
 │   ├── puti-agent.md        # 审查 (opus)
 │   └── tiandao-agent.md     # 监管 (sonnet)
 │
-├── skills/                   # 技能定义
-│   └── bagua-skill.md       # 先天八卦上下文收集
+├── skills/                   # Agent Skills
+│   └── bagua/
+│       └── SKILL.md         # 八卦上下文收集
 │
-└── hooks/                    # 钩子
-    ├── hooks.json           # 钩子配置
-    ├── pre-edit-check.sh    # 编辑前检查
-    └── post-edit-verify.sh  # 编辑后验证
+├── hooks/                    # 事件钩子
+│   ├── hooks.json           # 钩子配置
+│   ├── pre-edit-check.sh    # 编辑前检查
+│   └── post-edit-verify.sh  # 编辑后验证
+│
+├── README.md
+└── LICENSE
 ```
 
 ---
@@ -198,18 +233,61 @@ saints-workflow/
 ## 钩子功能
 
 ### pre-edit-check.sh
-- 保护关键依赖文件 (go.mod, package.json 等)
-- 文件锁检测 (防止并发冲突)
+
+- 保护关键依赖文件 (go.mod, package.json, Cargo.toml 等 15+ 种)
+- 文件锁检测 (防止并发编辑冲突)
 - 自动备份配置文件
 
 ### post-edit-verify.sh
-- 快速语法检查 (不完整编译)
+
+- 多语言语法检查 (Go, TS, JS, Python, Rust, Java, Ruby, PHP 等 12+ 种)
 - 变更历史记录
 - 文件大小异常检测
 - 测试文件关联提示
+- 调试代码检测
+
+---
+
+## 多语言支持
+
+| 组件 | 支持方式 |
+|------|---------|
+| 女娲 (测试) | 预设 10+ 语言 + WebSearch 动态学习 |
+| 伏羲 (增强) | 预设 8+ 语言配置 + 通用模式 |
+| 元始 (开发) | 预设 5+ 语言规范 + WebSearch 惯用法 |
+| 灵宝 (架构) | 预设 5+ 语言结构 + WebSearch 最佳实践 |
+| 菩提 (审查) | 预设 8+ 语言安全模式 + WebSearch 漏洞 |
+
+---
+
+## 开发与贡献
+
+```bash
+# 克隆仓库
+git clone https://gitee.com/skyRules/saints-workflow.git
+
+# 本地测试
+claude --plugin-dir ./saints-workflow
+
+# 查看可用命令
+/help
+```
 
 ---
 
 ## 许可证
 
-MIT
+[MIT License](LICENSE)
+
+---
+
+## 更新日志
+
+### v1.0.0 (2026-03-13)
+
+- 初始版本发布
+- 8 个专业化 Agent
+- 9 个 Slash Commands
+- 动态模型分配 (L1/L2/L3)
+- 多语言支持
+- 编辑钩子
