@@ -1,0 +1,8 @@
+{
+  "name": "saints-workflow",
+  "version": "1.0.0",
+  "description": "圣人工作流 - 基于道教神话的智能开发协作系统。完整流程：规划→拆分增强→开发→测试→审查→确认→增强修复",
+  "author": {
+    "name": "newZipX"
+  }
+}
