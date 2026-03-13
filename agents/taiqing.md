@@ -105,7 +105,7 @@ L3-复杂任务:
 
 **执行**:
 ```
-Task(taig-agent, prompt: "原子化拆分: {初步规划}")
+Task(taig, prompt: "原子化拆分: {初步规划}")
 ```
 
 太极将：
@@ -117,7 +117,7 @@ Task(taig-agent, prompt: "原子化拆分: {初步规划}")
 
 **执行**:
 ```
-Task(fuxi-agent, prompt: "增强方案: {原子任务}")
+Task(fuxi, prompt: "增强方案: {原子任务}")
 ```
 
 伏羲将：
@@ -130,14 +130,14 @@ Task(fuxi-agent, prompt: "增强方案: {原子任务}")
 **判断任务类型**:
 ```yaml
 L1-简单任务:
-  执行: Task(yuanshi-agent, prompt: "[L1简单任务，快速处理] {任务内容}")
+  执行: Task(yuanshi, prompt: "[L1简单任务，快速处理] {任务内容}")
 
 L2-中等任务:
-  执行: Task(yuanshi-agent, prompt: "[L2中等任务] {任务内容}")
+  执行: Task(yuanshi, prompt: "[L2中等任务] {任务内容}")
 
 L3-复杂任务:
-  架构设计: Task(lingbao-agent, prompt: "[L3复杂任务-架构设计] {架构需求}")
-  功能实现: Task(yuanshi-agent, prompt: "[L3复杂任务-核心实现] {开发内容}")
+  架构设计: Task(lingbao, prompt: "[L3复杂任务-架构设计] {架构需求}")
+  功能实现: Task(yuanshi, prompt: "[L3复杂任务-核心实现] {开发内容}")
 ```
 
 注：模型分配由各 agent 定义中的 model 字段决定，通过 prompt 标记复杂度让 agent 调整行为策略。
@@ -146,7 +146,7 @@ L3-复杂任务:
 
 **执行**:
 ```
-Task(nva-agent)
+Task(nva)
 ```
 
 女娲将自动检测项目类型并执行相应测试。
@@ -155,7 +155,7 @@ Task(nva-agent)
 
 **执行**:
 ```
-Task(puti-agent)
+Task(puti)
 ```
 
 菩提将进行代码质量、安全性、性能全面审查。
@@ -177,7 +177,7 @@ AskUserQuestion:
 
 **执行**:
 ```
-Task(fuxi-agent, prompt: "修复方案: {问题清单}")
+Task(fuxi, prompt: "修复方案: {问题清单}")
 ```
 
 修复后返回 Phase 5。
