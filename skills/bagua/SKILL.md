@@ -1,5 +1,5 @@
 ---
-name: bagua-skill
+name: bagua
 description: 先天八卦 - 8维度上下文收集技能。用于全面分析项目状态，为决策提供完整上下文。
 ---
 

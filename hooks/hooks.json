@@ -1,5 +1,4 @@
 {
-  "description": "圣人工作流钩子 - 编辑前后自动验证",
   "hooks": {
     "PreToolUse": [
       {
@@ -7,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-edit-check.sh"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/pre-edit-check.sh"
           }
         ]
       }
@@ -18,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/post-edit-verify.sh"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/post-edit-verify.sh"
           }
         ]
       }
