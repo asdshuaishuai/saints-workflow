@@ -1,5 +1,5 @@
 ---
-name: lingbao-agent
+name: lingbao
 description: 灵宝天尊 - 架构设计与重构专家。负责架构设计、架构优化、重构方案设计与实施。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: opus

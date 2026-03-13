@@ -1,6 +1,5 @@
 ---
 description: 伏羲 - 需求增强与上下文收集
-argument-hint: 需求或任务描述
 ---
 
 # 伏羲 (Fuxi)

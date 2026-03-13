@@ -1,6 +1,5 @@
 ---
 description: 太极 - 需求原子化拆分
-argument-hint: 需求或规划内容
 ---
 
 # 太极 (Taig)

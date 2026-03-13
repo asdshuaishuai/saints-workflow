@@ -1,5 +1,5 @@
 ---
-name: tiandao-agent
+name: tiandao
 description: 天道 - 圣人工作流监管者。检测偷懒、循环、自我怀疑，强制干预引导正向。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion
 model: sonnet

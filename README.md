@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-基于道教神话的 Claude Code 插件 - 智能开发协作系统
+基于洪荒神话的 Claude Code 插件 - 智能开发协作系统
 
 ---
 

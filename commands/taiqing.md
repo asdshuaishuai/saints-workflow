@@ -1,6 +1,5 @@
 ---
 description: 太清天尊 - 任务规划与流程控制
-argument-hint: 任务描述
 ---
 
 # 太清天尊 (Taiqing)

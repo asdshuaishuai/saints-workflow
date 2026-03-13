@@ -1,5 +1,5 @@
 ---
-name: taig-agent
+name: taig
 description: 太极 - 需求原子化专家。直属太清天尊，负责将规划原子化细分，识别可并行任务。
 tools: Bash, Read, Grep, Glob, Task
 model: haiku

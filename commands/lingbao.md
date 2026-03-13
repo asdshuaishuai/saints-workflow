@@ -1,6 +1,5 @@
 ---
 description: 灵宝天尊 - 架构设计与重构
-argument-hint: 架构或重构任务描述
 ---
 
 # 灵宝天尊 (Lingbao)

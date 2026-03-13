@@ -1,5 +1,5 @@
 ---
-name: taiqing-agent
+name: taiqing
 description: 太清天尊 - 主控协调者。负责任务规划、流程控制、动态模型分配。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion, TodoWrite
 model: opus

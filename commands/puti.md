@@ -1,6 +1,5 @@
 ---
 description: 菩提 - 代码审查与质量检查
-argument-hint: 审查范围或特定文件
 ---
 
 # 菩提 (Puti)

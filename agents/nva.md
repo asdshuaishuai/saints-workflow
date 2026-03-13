@@ -1,5 +1,5 @@
 ---
-name: nva-agent
+name: nva
 description: 女娲 - 测试验证与自动修复专家。负责编译测试、自动修复、问题验证。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: haiku

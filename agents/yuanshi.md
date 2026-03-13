@@ -1,5 +1,5 @@
 ---
-name: yuanshi-agent
+name: yuanshi
 description: 元始天尊 - 开发实现专家。负责功能编码、Bug修复、小规模改动。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: sonnet

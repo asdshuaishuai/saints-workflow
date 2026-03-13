@@ -1,0 +1,11 @@
+# Claude Code 项目配置
+.claude/settings.local.json
+.claude/tasks/
+.claude/backups/
+.claude/edit-history.log
+.claude/edit-warnings.log
+
+# 临时文件
+*.tmp
+*.bak
+*.lock

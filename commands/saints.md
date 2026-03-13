@@ -1,6 +1,5 @@
 ---
-description: 圣人工作流 - 基于道教神话的完整开发协作系统
-argument-hint: 任务描述
+description: 圣人工作流 - 基于洪荒神话的完整开发协作系统
 ---
 
 # 圣人工作流 (Saints Workflow)
@@ -14,7 +13,7 @@ argument-hint: 任务描述
 调用太清天尊执行完整工作流：
 
 ```
-Task(taiqing-agent, prompt: "执行完整工作流: $ARGUMENTS")
+Task(taiqing, prompt: "执行完整工作流: $ARGUMENTS")
 ```
 
 太清天尊将：

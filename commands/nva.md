@@ -1,6 +1,5 @@
 ---
 description: 女娲 - 测试验证与自动修复
-argument-hint: 测试范围或特定文件
 ---
 
 # 女娲 (Nva)

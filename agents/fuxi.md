@@ -1,5 +1,5 @@
 ---
-name: fuxi-agent
+name: fuxi
 description: 伏羲 - 需求增强专家。负责先天八卦上下文收集、方案专业化增强。
 tools: Bash, Read, Grep, Glob, WebSearch, WebFetch, Task, AskUserQuestion
 model: sonnet

@@ -1,6 +1,5 @@
 ---
 description: 先天八卦 - 8维度上下文收集，全面分析项目状态
-argument-hint: 模块或功能名称（可选）
 ---
 
 # 先天八卦 (Bagua)

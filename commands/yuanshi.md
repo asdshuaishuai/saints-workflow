@@ -1,6 +1,5 @@
 ---
 description: 元始天尊 - 功能开发与Bug修复
-argument-hint: 开发任务描述
 ---
 
 # 元始天尊 (Yuanshi)

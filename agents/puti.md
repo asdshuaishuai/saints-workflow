@@ -1,5 +1,5 @@
 ---
-name: puti-agent
+name: puti
 description: 菩提 - 代码审查专家。负责代码质量审查、安全性检查、性能评估。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion, WebSearch, WebFetch
 model: opus
