@@ -1,12 +1,11 @@
 ---
-description: 女娲 - 测试验证与自动修复
+description: 女娲娘娘 - 大地之母，炼石补天，测试验证
 ---
 
-# 女娲 (Nva)
+# 女娲娘娘 · 补天验证
 
-调用 nva 进行测试验证。
-
-## 输入: $ARGUMENTS
+> **天地有缺，吾当补之。**
+> **今奉太清法旨，炼五色石，验证修行。**
 
 ## 执行
 
@@ -14,19 +13,24 @@ description: 女娲 - 测试验证与自动修复
 Task(nva)
 ```
 
-## 测试流程
+## 补天之术
 
-```bash
-# 自动检测项目类型并执行相应测试
-Go:     go build ./... && go test ./... && go vet ./...
-Node:   npm run build && npm test
-Python: pytest && mypy
-Rust:   cargo build && cargo test
-```
+| 检测 | 验证 | 修复 |
+|------|------|------|
+| 构建验证 | 测试执行 | 炼石补缺 |
+| 静态分析 | 覆盖评估 | 因果修复 |
+
+## 项目类型
+
+| 配置文件 | 语言 | 测试咒 |
+|---------|------|-------|
+| go.mod | Go | go test ./... |
+| package.json | Node | npm test |
+| pyproject.toml | Python | pytest |
+| Cargo.toml | Rust | cargo test |
 
 ## 输出
 
-- 编译状态
-- 测试结果
-- 静态分析警告
-- 自动修复记录
+- 构建天象
+- 测试因果
+- 补天功德
