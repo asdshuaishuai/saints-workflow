@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**语言 / Languages / 言語**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
+
 基于封神榜洪荒神话之 Claude Code 插件 - 智能开发协作系统
 
 ---
@@ -322,6 +324,12 @@ saints-workflow/
 ---
 
 ## 更新日志
+
+### v1.2.2 (2026-03-19)
+
+- **文档**：新增英文版 README_EN.md
+- **文档**：新增日文版 README_JA.md
+- **文档**：主 README 添加语言切换链接
 
 ### v1.2.1 (2026-03-19)
 
