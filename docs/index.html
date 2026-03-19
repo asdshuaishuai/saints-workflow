@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣人工作流 - Saints Workflow</title>
+    <meta name="description" content="基于封神榜洪荒神话的 Claude Code 智能开发协作插件">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☯</text></svg>">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f97316;
+            --bg-dark: #0f0f1a;
+            --bg-card: rgba(30, 30, 50, 0.8);
+            --text: #e5e5e5;
+            --text-muted: #9ca3af;
+            --border: rgba(99, 102, 241, 0.3);
+            --glow: rgba(99, 102, 241, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.3), transparent);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(15, 15, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-switch button {
+            padding: 0.25rem 0.75rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-switch button.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px var(--glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Saints Hierarchy */
+        .saints-tree {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .saint-level {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .saint-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            min-width: 150px;
+            transition: all 0.3s;
+        }
+
+        .saint-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px var(--glow);
+        }
+
+        .saint-card.opus {
+            border-color: var(--secondary);
+        }
+
+        .saint-card.opus:hover {
+            box-shadow: 0 5px 20px rgba(249, 115, 22, 0.3);
+        }
+
+        .saint-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .saint-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .saint-model {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--primary);
+        }
+
+        .saint-card.opus .saint-model {
+            background: rgba(249, 115, 22, 0.2);
+            color: var(--secondary);
+        }
+
+        .tree-line {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            margin: 0 auto;
+        }
+
+        /* Workflow Steps */
+        .workflow-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .step-text {
+            color: var(--text);
+        }
+
+        .step-arrow {
+            color: var(--text-muted);
+        }
+
+        /* Code Block */
+        .code-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .code-block .comment {
+            color: #6a737d;
+        }
+
+        .code-block .command {
+            color: #7ee787;
+        }
+
+        .code-block .string {
+            color: #a5d6ff;
+        }
+
+        /* Installation Steps */
+        .install-steps {
+            counter-reset: step;
+        }
+
+        .install-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .install-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .install-step h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .install-step code {
+            display: block;
+            background: #1a1a2e;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+
+        /* Commands Table */
+        .commands-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .commands-table th,
+        .commands-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .commands-table th {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .commands-table code {
+            background: #1a1a2e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .commands-table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .saint-card {
+                min-width: 120px;
+                padding: 1rem;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="stars"></div>
+
+    <nav>
+        <div class="logo">☯ 圣人工作流</div>
+        <ul class="nav-links">
+            <li><a href="#features" data-i18n="nav.features">特性</a></li>
+            <li><a href="#saints" data-i18n="nav.saints">圣人体系</a></li>
+            <li><a href="#workflow" data-i18n="nav.workflow">工作流程</a></li>
+            <li><a href="#install" data-i18n="nav.install">安装</a></li>
+            <li><a href="#commands" data-i18n="nav.commands">命令</a></li>
+        </ul>
+        <div class="lang-switch">
+            <button class="active" onclick="setLang('zh')">中文</button>
+            <button onclick="setLang('en')">EN</button>
+            <button onclick="setLang('ja')">日本語</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-icon">☯</div>
+        <h1 data-i18n="hero.title">圣人工作流</h1>
+        <div class="subtitle" data-i18n="hero.subtitle">Saints Workflow</div>
+        <p class="tagline" data-i18n="hero.tagline">
+            基于封神榜洪荒神话的 Claude Code 智能开发协作插件。<br>
+            道生一，一生二，二生三，三生万物。
+        </p>
+        <div class="cta-buttons">
+            <a href="https://github.com/asdshuaishuai/saints-workflow" class="btn btn-primary" data-i18n="hero.btn.github">
+                GitHub 仓库
+            </a>
+            <a href="https://gitee.com/skyRules/saints-workflow" class="btn btn-secondary" data-i18n="hero.btn.gitee">
+                Gitee 镜像
+            </a>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title" data-i18n="features.title">核心特性</h2>
+        <p class="section-desc" data-i18n="features.desc">
+            融合中国神话与现代 AI，打造独特的开发协作体验
+        </p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 data-i18n="features.f1.title">天道定时监管</h3>
+                <p data-i18n="features.f1.desc">每三分钟自动降临，检测懈怠、轮回、迷途，强制干预引导正向。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 data-i18n="features.f2.title">动态模型分配</h3>
+                <p data-i18n="features.f2.desc">依任务复杂度自动选择 opus/sonnet/haiku 模型，优化性能与成本。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 data-i18n="features.f3.title">并行任务识别</h3>
+                <p data-i18n="features.f3.desc">L3 复杂任务自动识别可并行执行的部分，协调多个 Agent 并行工作。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 data-i18n="features.f4.title">智能流程简化</h3>
+                <p data-i18n="features.f4.desc">简单任务自动跳过不必要的阶段，L1 任务直接进入开发。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 data-i18n="features.f5.title">多语言支持</h3>
+                <p data-i18n="features.f5.desc">支持 Python、JavaScript、Go、Rust 等 10+ 编程语言，WebSearch 动态学习新语言。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 data-i18n="features.f6.title">洪荒韵味对话</h3>
+                <p data-i18n="features.f6.desc">诸圣对话尽皆文言，封神榜洪荒神话风格，开发亦是一种修行。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="saints">
+        <h2 class="section-title" data-i18n="saints.title">圣人体系</h2>
+        <p class="section-desc" data-i18n="saints.desc">
+            基于封神榜设定，八位圣人各司其职
+        </p>
+        <div class="saints-tree">
+            <div class="saint-level">
+                <div class="saint-card opus">
+                    <div class="saint-name" data-i18n="saints.taiqing.name">太清天尊</div>
+                    <div class="saint-role" data-i18n="saints.taiqing.role">主控协调</div>
+                    <span class="saint-model">opus</span>
+                </div>
+            </div>
+            <div class="tree-line"></div>
+            <div class="saint-level">
+                <div class="saint-card">
+                    <div class="saint-name" data-i18n="saints.taig.name">太极图</div>
+                    <div class="saint-role" data-i18n="saints.taig.role">需求原子化</div>
+                    <span class="saint-model">haiku</span>
+                </div>
+                <div class="saint-card">
+                    <div class="saint-name" data-i18n="saints.fuxi.name">伏羲氏</div>
+                    <div class="saint-role" data-i18n="saints.fuxi.role">方案增强</div>
+                    <span class="saint-model">sonnet</span>
+                </div>
+            </div>
+            <div class="tree-line"></div>
+            <div class="saint-level">
+                <div class="saint-card opus">
+                    <div class="saint-name" data-i18n="saints.tongtian.name">通天教主</div>
+                    <div class="saint-role" data-i18n="saints.tongtian.role">架构设计</div>
+                    <span class="saint-model">opus</span>
+                </div>
+                <div class="saint-card">
+                    <div class="saint-name" data-i18n="saints.yuanshi.name">元始天尊</div>
+                    <div class="saint-role" data-i18n="saints.yuanshi.role">功能开发</div>
+                    <span class="saint-model">sonnet</span>
+                </div>
+            </div>
+            <div class="tree-line"></div>
+            <div class="saint-level">
+                <div class="saint-card">
+                    <div class="saint-name" data-i18n="saints.nuwa.name">女娲娘娘</div>
+                    <div class="saint-role" data-i18n="saints.nuwa.role">测试验证</div>
+                    <span class="saint-model">haiku</span>
+                </div>
+            </div>
+            <div class="tree-line"></div>
+            <div class="saint-level">
+                <div class="saint-card opus">
+                    <div class="saint-name" data-i18n="saints.zhunti.name">准提道人</div>
+                    <div class="saint-role" data-i18n="saints.zhunti.role">代码审查</div>
+                    <span class="saint-model">opus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow">
+        <h2 class="section-title" data-i18n="workflow.title">工作流程</h2>
+        <p class="section-desc" data-i18n="workflow.desc">
+            七阶段开发流程，从规划到交付
+        </p>
+        <div class="workflow-steps">
+            <div class="step">
+                <span class="step-num">1</span>
+                <span class="step-text" data-i18n="workflow.s1">规划</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">2</span>
+                <span class="step-text" data-i18n="workflow.s2">拆分增强</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">3</span>
+                <span class="step-text" data-i18n="workflow.s3">开发</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">4</span>
+                <span class="step-text" data-i18n="workflow.s4">测试</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">5</span>
+                <span class="step-text" data-i18n="workflow.s5">审查</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">6</span>
+                <span class="step-text" data-i18n="workflow.s6">确认</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">7</span>
+                <span class="step-text" data-i18n="workflow.s7">增强修复</span>
+            </div>
+        </div>
+
+        <div class="code-section">
+            <h3 data-i18n="workflow.example.title">快速示例</h3>
+            <div class="code-block">
+                <span class="comment"># 启动完整工作流</span><br>
+                <span class="command">/saints-workflow:saints</span> <span class="string">实现用户登录功能</span><br><br>
+                <span class="comment"># 或使用洪荒风格</span><br>
+                <span class="command">/saints-workflow:saints</span> <span class="string">炼制登录法宝</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="install">
+        <h2 class="section-title" data-i18n="install.title">安装指南</h2>
+        <p class="section-desc" data-i18n="install.desc">
+            三步完成本地安装
+        </p>
+        <div class="install-steps">
+            <div class="install-step">
+                <h4 data-i18n="install.s1.title">克隆插件到本地缓存</h4>
+                <code>git clone https://github.com/asdshuaishuai/saints-workflow.git \
+~/.claude/plugins/cache/local/saints-workflow/1.2.0</code>
+            </div>
+            <div class="install-step">
+                <h4 data-i18n="install.s2.title">注册插件</h4>
+                <code>编辑 ~/.claude/plugins/installed_plugins.json 添加配置<br>
+详见 README.md</code>
+            </div>
+            <div class="install-step">
+                <h4 data-i18n="install.s3.title">启用并重启</h4>
+                <code>编辑 ~/.claude/settings.json 添加到 enabledPlugins<br>
+然后运行 claude 重启</code>
+            </div>
+        </div>
+    </section>
+
+    <section id="commands">
+        <h2 class="section-title" data-i18n="commands.title">命令一览</h2>
+        <p class="section-desc" data-i18n="commands.desc">
+            所有可用的 Slash 命令
+        </p>
+        <table class="commands-table">
+            <thead>
+                <tr>
+                    <th data-i18n="commands.table.cmd">命令</th>
+                    <th data-i18n="commands.table.func">功能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>/saints-workflow:saints</code></td>
+                    <td data-i18n="commands.c.saints">完整工作流</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:taiqing</code></td>
+                    <td data-i18n="commands.c.taiqing">仅规划</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:taig</code></td>
+                    <td data-i18n="commands.c.taig">原子化拆分</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:fuxi</code></td>
+                    <td data-i18n="commands.c.fuxi">方案增强</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:yuanshi</code></td>
+                    <td data-i18n="commands.c.yuanshi">功能开发</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:lingbao</code></td>
+                    <td data-i18n="commands.c.lingbao">架构设计</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:nva</code></td>
+                    <td data-i18n="commands.c.nva">测试验证</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:puti</code></td>
+                    <td data-i18n="commands.c.puti">代码审查</td>
+                </tr>
+                <tr>
+                    <td><code>/saints-workflow:tiandao</code></td>
+                    <td data-i18n="commands.c.tiandao">天道降临</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>
+            <a href="https://github.com/asdshuaishuai/saints-workflow">GitHub</a> ·
+            <a href="https://gitee.com/skyRules/saints-workflow">Gitee</a> ·
+            <span data-i18n="footer.license">MIT License</span>
+        </p>
+        <p data-i18n="footer.quote">道生一，一生二，二生三，三生万物。</p>
+    </footer>
+
+    <script>
+        const i18n = {
+            zh: {
+                'nav.features': '特性',
+                'nav.saints': '圣人体系',
+                'nav.workflow': '工作流程',
+                'nav.install': '安装',
+                'nav.commands': '命令',
+                'hero.title': '圣人工作流',
+                'hero.subtitle': 'Saints Workflow',
+                'hero.tagline': '基于封神榜洪荒神话的 Claude Code 智能开发协作插件。<br>道生一，一生二，二生三，三生万物。',
+                'hero.btn.github': 'GitHub 仓库',
+                'hero.btn.gitee': 'Gitee 镜像',
+                'features.title': '核心特性',
+                'features.desc': '融合中国神话与现代 AI，打造独特的开发协作体验',
+                'features.f1.title': '天道定时监管',
+                'features.f1.desc': '每三分钟自动降临，检测懈怠、轮回、迷途，强制干预引导正向。',
+                'features.f2.title': '动态模型分配',
+                'features.f2.desc': '依任务复杂度自动选择 opus/sonnet/haiku 模型，优化性能与成本。',
+                'features.f3.title': '并行任务识别',
+                'features.f3.desc': 'L3 复杂任务自动识别可并行执行的部分，协调多个 Agent 并行工作。',
+                'features.f4.title': '智能流程简化',
+                'features.f4.desc': '简单任务自动跳过不必要的阶段，L1 任务直接进入开发。',
+                'features.f5.title': '多语言支持',
+                'features.f5.desc': '支持 Python、JavaScript、Go、Rust 等 10+ 编程语言，WebSearch 动态学习新语言。',
+                'features.f6.title': '洪荒韵味对话',
+                'features.f6.desc': '诸圣对话尽皆文言，封神榜洪荒神话风格，开发亦是一种修行。',
+                'saints.title': '圣人体系',
+                'saints.desc': '基于封神榜设定，八位圣人各司其职',
+                'saints.taiqing.name': '太清天尊',
+                'saints.taiqing.role': '主控协调',
+                'saints.taig.name': '太极图',
+                'saints.taig.role': '需求原子化',
+                'saints.fuxi.name': '伏羲氏',
+                'saints.fuxi.role': '方案增强',
+                'saints.tongtian.name': '通天教主',
+                'saints.tongtian.role': '架构设计',
+                'saints.yuanshi.name': '元始天尊',
+                'saints.yuanshi.role': '功能开发',
+                'saints.nuwa.name': '女娲娘娘',
+                'saints.nuwa.role': '测试验证',
+                'saints.zhunti.name': '准提道人',
+                'saints.zhunti.role': '代码审查',
+                'workflow.title': '工作流程',
+                'workflow.desc': '七阶段开发流程，从规划到交付',
+                'workflow.s1': '规划',
+                'workflow.s2': '拆分增强',
+                'workflow.s3': '开发',
+                'workflow.s4': '测试',
+                'workflow.s5': '审查',
+                'workflow.s6': '确认',
+                'workflow.s7': '增强修复',
+                'workflow.example.title': '快速示例',
+                'install.title': '安装指南',
+                'install.desc': '三步完成本地安装',
+                'install.s1.title': '克隆插件到本地缓存',
+                'install.s2.title': '注册插件',
+                'install.s3.title': '启用并重启',
+                'commands.title': '命令一览',
+                'commands.desc': '所有可用的 Slash 命令',
+                'commands.table.cmd': '命令',
+                'commands.table.func': '功能',
+                'commands.c.saints': '完整工作流',
+                'commands.c.taiqing': '仅规划',
+                'commands.c.taig': '原子化拆分',
+                'commands.c.fuxi': '方案增强',
+                'commands.c.yuanshi': '功能开发',
+                'commands.c.lingbao': '架构设计',
+                'commands.c.nva': '测试验证',
+                'commands.c.puti': '代码审查',
+                'commands.c.tiandao': '天道降临',
+                'footer.license': 'MIT License',
+                'footer.quote': '道生一，一生二，二生三，三生万物。'
+            },
+            en: {
+                'nav.features': 'Features',
+                'nav.saints': 'Saints',
+                'nav.workflow': 'Workflow',
+                'nav.install': 'Install',
+                'nav.commands': 'Commands',
+                'hero.title': 'Saints Workflow',
+                'hero.subtitle': 'Claude Code Plugin',
+                'hero.tagline': 'A Claude Code plugin based on Chinese mythology "Investiture of the Gods".<br>Intelligent development collaboration system.',
+                'hero.btn.github': 'GitHub Repo',
+                'hero.btn.gitee': 'Gitee Mirror',
+                'features.title': 'Core Features',
+                'features.desc': 'Combining Chinese mythology with modern AI for a unique development experience',
+                'features.f1.title': 'Heavenly Dao Monitoring',
+                'features.f1.desc': 'Automatic intervention every 3 minutes to detect idleness, loops, and confusion.',
+                'features.f2.title': 'Dynamic Model Allocation',
+                'features.f2.desc': 'Automatically select opus/sonnet/haiku based on task complexity.',
+                'features.f3.title': 'Parallel Task Detection',
+                'features.f3.desc': 'L3 complex tasks automatically identify parallelizable parts.',
+                'features.f4.title': 'Smart Process Simplification',
+                'features.f4.desc': 'Simple tasks skip unnecessary phases automatically.',
+                'features.f5.title': 'Multi-language Support',
+                'features.f5.desc': 'Supports 10+ programming languages with WebSearch for dynamic learning.',
+                'features.f6.title': 'Mythological Dialogue',
+                'features.f6.desc': 'Conversations styled after Fengshen Bang mythology.',
+                'saints.title': 'Saints System',
+                'saints.desc': 'Eight saints from Fengshen Bang, each with their own role',
+                'saints.taiqing.name': 'Taiqing Sage',
+                'saints.taiqing.role': 'Coordination',
+                'saints.taig.name': 'Taiji Diagram',
+                'saints.taig.role': 'Atomic Breakdown',
+                'saints.fuxi.name': 'Fuxi',
+                'saints.fuxi.role': 'Enhancement',
+                'saints.tongtian.name': 'Tongtian',
+                'saints.tongtian.role': 'Architecture',
+                'saints.yuanshi.name': 'Yuanshi',
+                'saints.yuanshi.role': 'Development',
+                'saints.nuwa.name': 'Nuwa',
+                'saints.nuwa.role': 'Testing',
+                'saints.zhunti.name': 'Zhunti',
+                'saints.zhunti.role': 'Code Review',
+                'workflow.title': 'Workflow',
+                'workflow.desc': '7-phase development process from planning to delivery',
+                'workflow.s1': 'Planning',
+                'workflow.s2': 'Breakdown',
+                'workflow.s3': 'Development',
+                'workflow.s4': 'Testing',
+                'workflow.s5': 'Review',
+                'workflow.s6': 'Confirm',
+                'workflow.s7': 'Enhance',
+                'workflow.example.title': 'Quick Example',
+                'install.title': 'Installation',
+                'install.desc': 'Three steps to install locally',
+                'install.s1.title': 'Clone to local cache',
+                'install.s2.title': 'Register plugin',
+                'install.s3.title': 'Enable and restart',
+                'commands.title': 'Commands',
+                'commands.desc': 'All available slash commands',
+                'commands.table.cmd': 'Command',
+                'commands.table.func': 'Function',
+                'commands.c.saints': 'Full workflow',
+                'commands.c.taiqing': 'Planning only',
+                'commands.c.taig': 'Atomic breakdown',
+                'commands.c.fuxi': 'Enhancement',
+                'commands.c.yuanshi': 'Development',
+                'commands.c.lingbao': 'Architecture',
+                'commands.c.nva': 'Testing',
+                'commands.c.puti': 'Code review',
+                'commands.c.tiandao': 'Heavenly Dao',
+                'footer.license': 'MIT License',
+                'footer.quote': 'The Dao produces One, One produces Two, Two produces Three, Three produces all things.'
+            },
+            ja: {
+                'nav.features': '機能',
+                'nav.saints': '聖人',
+                'nav.workflow': 'ワークフロー',
+                'nav.install': 'インストール',
+                'nav.commands': 'コマンド',
+                'hero.title': '聖人ワークフロー',
+                'hero.subtitle': 'Claude Code プラグイン',
+                'hero.tagline': '中国神話「封神演義」に基づくClaude Codeプラグイン。<br>インテリジェント開発協力システム。',
+                'hero.btn.github': 'GitHub リポ',
+                'hero.btn.gitee': 'Gitee ミラー',
+                'features.title': '主な機能',
+                'features.desc': '中国神話と現代AIを融合したユニークな開発体験',
+                'features.f1.title': '天道による監視',
+                'features.f1.desc': '3分ごとに自動介入し、怠惰やループ、混乱を検出。',
+                'features.f2.title': '動的モデル割り当て',
+                'features.f2.desc': 'タスク複雑度に応じてopus/sonnet/haikuを自動選択。',
+                'features.f3.title': '並列タスク検出',
+                'features.f3.desc': 'L3複雑タスクは並列実行可能な部分を自動識別。',
+                'features.f4.title': 'スマートプロセス簡素化',
+                'features.f4.desc': '単純なタスクは不要なフェーズを自動スキップ。',
+                'features.f5.title': '多言語サポート',
+                'features.f5.desc': '10以上のプログラミング言語をサポート。',
+                'features.f6.title': '神話的対話',
+                'features.f6.desc': '封神演義スタイルの会話。',
+                'saints.title': '聖人システム',
+                'saints.desc': '封神演義から8人の聖人、それぞれが役割を持つ',
+                'saints.taiqing.name': '太清天尊',
+                'saints.taiqing.role': '調整',
+                'saints.taig.name': '太極図',
+                'saints.taig.role': '原子分解',
+                'saints.fuxi.name': '伏羲',
+                'saints.fuxi.role': '強化',
+                'saints.tongtian.name': '通天教主',
+                'saints.tongtian.role': 'アーキテクチャ',
+                'saints.yuanshi.name': '元始天尊',
+                'saints.yuanshi.role': '開発',
+                'saints.nuwa.name': '女媧',
+                'saints.nuwa.role': 'テスト',
+                'saints.zhunti.name': '準提道人',
+                'saints.zhunti.role': 'レビュー',
+                'workflow.title': 'ワークフロー',
+                'workflow.desc': '計画から納品まで7フェーズの開発プロセス',
+                'workflow.s1': '計画',
+                'workflow.s2': '分解',
+                'workflow.s3': '開発',
+                'workflow.s4': 'テスト',
+                'workflow.s5': 'レビュー',
+                'workflow.s6': '確認',
+                'workflow.s7': '強化',
+                'workflow.example.title': 'クイック例',
+                'install.title': 'インストール',
+                'install.desc': '3ステップでローカルインストール',
+                'install.s1.title': 'ローカルキャッシュにクローン',
+                'install.s2.title': 'プラグインを登録',
+                'install.s3.title': '有効化して再起動',
+                'commands.title': 'コマンド',
+                'commands.desc': '利用可能なすべてのスラッシュコマンド',
+                'commands.table.cmd': 'コマンド',
+                'commands.table.func': '機能',
+                'commands.c.saints': 'フルワークフロー',
+                'commands.c.taiqing': '計画のみ',
+                'commands.c.taig': '原子分解',
+                'commands.c.fuxi': '強化',
+                'commands.c.yuanshi': '開発',
+                'commands.c.lingbao': 'アーキテクチャ',
+                'commands.c.nva': 'テスト',
+                'commands.c.puti': 'レビュー',
+                'commands.c.tiandao': '天道降臨',
+                'footer.license': 'MIT License',
+                'footer.quote': '道は一を生じ、一は二を生じ、二は三を生じ、三は万物を生ず。'
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
