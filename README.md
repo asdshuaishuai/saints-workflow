@@ -122,28 +122,144 @@ CronDelete(job_id: {天道令牌})
 
 ## 安装
 
-### 方法一：通过市场安装（推荐）
+### 方法一：本地插件安装（当前环境使用）
+
+此方法无需配置市场，直接将插件安装到本地缓存目录。
+
+**步骤 1：克隆插件到本地缓存**
 
 ```bash
-# 在 Claude Code 中运行
-/plugin install https://gitee.com/skyRules/saints-workflow.git
-```
-
-### 方法二：手动安装
-
-```bash
-# 克隆至 Claude Code 插件缓存目录
+# 创建目录并克隆
+mkdir -p ~/.claude/plugins/cache/local/saints-workflow
 git clone https://gitee.com/skyRules/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
-而后于 `~/.claude/plugins/installed_plugins.json` 中添加配置。
+**步骤 2：注册插件**
 
-### 方法三：使用 --plugin-dir 测试
+编辑 `~/.claude/plugins/installed_plugins.json`，在 `plugins` 对象中添加：
+
+```json
+{
+  "version": 2,
+  "plugins": {
+    "saints-workflow@saints-workflow-local": [
+      {
+        "scope": "user",
+        "installPath": "/home/你的用户名/.claude/plugins/cache/local/saints-workflow/1.2.0",
+        "version": "1.2.0",
+        "installedAt": "2026-03-19T00:00:00.000Z",
+        "lastUpdated": "2026-03-19T00:00:00.000Z"
+      }
+    ]
+  }
+}
+```
+
+**步骤 3：启用插件**
+
+编辑 `~/.claude/settings.json`，添加到 `enabledPlugins`：
+
+```json
+{
+  "enabledPlugins": {
+    "saints-workflow@saints-workflow-local": true
+  }
+}
+```
+
+**步骤 4：重启 Claude Code**
 
 ```bash
+# 重新启动 Claude Code 即可使用
+claude
+```
+
+### 方法二：通过市场安装
+
+**步骤 1：配置插件市场**
+
+编辑 `~/.claude/plugins/marketplaces.json`（如不存在则创建）：
+
+```json
+[
+  {
+    "name": "saints-market",
+    "url": "https://gitee.com/skyRules/saints-workflow.git",
+    "type": "git"
+  }
+]
+```
+
+**步骤 2：安装插件**
+
+```bash
+# 在 Claude Code 中运行
+/plugin install saints-workflow
+```
+
+### 方法三：使用 --plugin-dir 测试（开发调试用）
+
+```bash
+# 克隆仓库
 git clone https://gitee.com/skyRules/saints-workflow.git
+
+# 使用指定插件目录启动
 claude --plugin-dir ./saints-workflow
+```
+
+---
+
+## 当前环境配置示例
+
+以下是本机环境的实际配置，供参考：
+
+**目录结构：**
+
+```
+~/.claude/
+├── plugins/
+│   ├── cache/
+│   │   └── local/
+│   │       └── saints-workflow/
+│   │           └── 1.2.0/          # 插件代码
+│   │               ├── .claude-plugin/
+│   │               │   └── plugin.json
+│   │               ├── agents/
+│   │               ├── commands/
+│   │               ├── skills/
+│   │               └── hooks/
+│   └── installed_plugins.json      # 插件注册
+└── settings.json                   # 启用配置
+```
+
+**installed_plugins.json 片段：**
+
+```json
+{
+  "version": 2,
+  "plugins": {
+    "saints-workflow@saints-workflow-local": [
+      {
+        "scope": "user",
+        "installPath": "/home/kelthas/.claude/plugins/cache/local/saints-workflow/1.2.0",
+        "version": "1.2.0",
+        "installedAt": "2026-03-19T00:00:00.000Z",
+        "lastUpdated": "2026-03-19T00:00:00.000Z"
+      }
+    ]
+  }
+}
+```
+
+**settings.json 片段：**
+
+```json
+{
+  "enabledPlugins": {
+    "saints-workflow@saints-workflow-local": true
+  }
+}
 ```
 
 ---
@@ -206,6 +322,12 @@ saints-workflow/
 ---
 
 ## 更新日志
+
+### v1.2.1 (2026-03-19)
+
+- **文档**：完善安装配置说明，添加本地安装详细步骤
+- **文档**：添加当前环境配置示例
+- **文档**：添加 market 配置方式说明
 
 ### v1.2.0 (2026-03-19)
 
