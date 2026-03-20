@@ -1,16 +1,16 @@
-# 圣人工作流 (Saints Workflow)
+# 企业工作流 (Enterprise Workflow)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**语言 / Languages / 言語**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
+**语言 / Languages**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
 
-基于封神榜洪荒神话之 Claude Code 插件 - 智能开发协作系统
+基于 Claude Code 的企业级开发协作插件 - 产研测审一体化智能协作系统
 
 ---
 
 ## 概述
 
-圣人工作流乃完整之 Claude Code 插件，含七阶段开发流程：
+企业工作流是一个完整的 Claude Code 插件，包含七阶段开发流程：
 
 ```
 [1] 规划 → [2] 拆分增强 → [3] 开发 → [4] 测试 → [5] 审查 → [6] 确认 → [7] 增强修复
@@ -18,29 +18,29 @@
 
 ### 核心特性
 
-- **天道定时监管**：每三刻自动降临，拨乱反正
-- **功德圆满退场**：任务圆满后自动解除天道监管
-- **动态模型分配**：依任务复杂度自动择模型 (opus/sonnet/haiku)
-- **并行任务识别**：自动识别可并行执行之任务
+- **定时流程监管**：每三分钟自动检查进度，异常干预
+- **任务完成退场**：任务完成后自动解除监管
+- **动态模型分配**：根据任务复杂度自动选择模型 (opus/sonnet/haiku)
+- **并行任务识别**：自动识别可并行执行的任务
 - **智能流程简化**：简单任务自动跳过不必要阶段
 - **多语言支持**：支持十数种编程语言 + WebSearch 动态学习
-- **洪荒韵味对话**：封神榜洪荒神话风格对话
+- **企业化术语**：标准企业产研测审术语
 
 ---
 
-## 圣人体系 (封神榜设定)
+## 组织架构
 
 ```
                     ┌──────────────┐
-                    │   太清天尊    │
-                    │   (老子)     │
+                    │   项目经理    │
+                    │ (流程控制)    │
                     │  model: opus │
                     └──────┬───────┘
                            │
                            ▼
                 ┌─────────────────┐
-                │ 太极图 (法宝)    │
-                │ + 伏羲 (人皇)    │
+                │ 任务拆分引擎     │
+                │ + 需求分析师     │
                 │ haiku + sonnet  │
                 └────────┬────────┘
                            │
@@ -48,8 +48,8 @@
             │              │              │
             ▼              ▼              ▼
       ┌──────────┐  ┌──────────┐  ┌──────────┐
-      │通天教主   │  │元始天尊   │  │   ...    │
-      │ (截教)   │  │ (阐教)   │  │          │
+      │ 架构师    │  │开发工程师 │  │   ...    │
+      │(技术架构) │  │(核心开发) │  │          │
       │  opus    │  │  sonnet  │  │          │
       └────┬─────┘  └────┬─────┘  └──────────┘
            │             │
@@ -57,67 +57,67 @@
                   │
                   ▼
            ┌──────────┐
-           │  女娲    │
-           │ (补天)   │
+           │测试工程师 │
+           │(质量保证) │
            │  haiku   │
            └────┬─────┘
                 │
                 ▼
            ┌──────────┐
-           │ 准提道人  │
-           │ (西方教)  │
+           │代码审查   │
+           │(质量把关) │
            │  opus    │
            └────┬─────┘
                 │
                 ▼
            ┌──────────┐
-           │ 善信确认  │
+           │ 用户确认  │
            └──────────┘
 ```
 
 ---
 
-## 圣人列表与模型分配
+## 部门职能与模型分配
 
-| 圣人 | 封神榜身份 | 职责 | 阶段 | 模型 |
-|------|-----------|------|:----:|:----:|
-| 太清天尊 | 老子/道德天尊 | 主控协调 | [1] | **opus** |
-| 太极图 | 太清法宝 | 需求原子化 | [2] | **haiku** |
-| 伏羲氏 | 人皇/三皇之首 | 方案增强 | [2][7] | sonnet |
-| 元始天尊 | 阐教掌教 | 功能开发 | [3] | sonnet |
-| 通天教主 | 截教掌教 | 架构设计 | [3] | **opus** |
-| 女娲娘娘 | 大地之母 | 测试验证 | [4] | **haiku** |
-| 准提道人 | 西方教圣人 | 代码审查 | [5] | **opus** |
-| 天道 | 无形无相 | 流程监管 | - | sonnet |
+| 部门 | 角色 | 职责 | 阶段 | 模型 |
+|------|------|------|:----:|:----:|
+| 项目经理 | 流程控制 | 统筹协调 | [1] | **opus** |
+| 任务拆分 | 需求分析 | 需求原子化 | [2] | **haiku** |
+| 需求分析 | 业务分析 | 方案增强 | [2][7] | sonnet |
+| 开发工程师 | 核心开发 | 功能开发 | [3] | sonnet |
+| 架构师 | 技术架构 | 架构设计 | [3] | **opus** |
+| 测试工程师 | 质量保证 | 测试验证 | [4] | **haiku** |
+| 代码审查 | 质量把关 | 代码审查 | [5] | **opus** |
+| 流程监管 | 进度监控 | 流程监管 | - | sonnet |
 
 ---
 
-## 天道定时监管 (V1.2 新增)
+## 流程监管 (V1.2 新增)
 
-### 开启天道
+### 开启监管
 
-任务开始时，自动开启天道法眼：
+任务开始时，自动开启流程监管：
 
 ```
 CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
 ```
 
-### 天道降临
+### 定时检查
 
-每三刻，天道自动降临，监察诸圣：
+每三分钟，监管器自动检查进度：
 
-| 检测项 | 触发条件 | 天罚 |
-|--------|---------|------|
-| 懈怠之罪 | 停滞 > 5分钟 | 雷罚催促 |
-| 轮回之困 | 重复 > 3次 | 斩断轮回 |
-| 迷途之惑 | 犹豫 > 2次 | 天音指路 |
+| 检测项 | 触发条件 | 干预措施 |
+|--------|---------|---------|
+| 进度停滞 | 停滞 > 5分钟 | 推进提醒 |
+| 重复循环 | 重复 > 3次 | 断开循环 |
+| 方向迷茫 | 犹豫 > 2次 | 指引方向 |
 
-### 功德圆满
+### 任务完成
 
-任务圆满后，天道自动退场：
+任务完成后，监管器自动退出：
 
 ```
-CronDelete(job_id: {天道令牌})
+CronDelete(job_id: {监管令牌})
 ```
 
 ---
@@ -133,7 +133,7 @@ CronDelete(job_id: {天道令牌})
 ```bash
 # 创建目录并克隆
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone https://gitee.com/skyRules/saints-workflow.git \
+git clone git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -187,7 +187,7 @@ claude
 [
   {
     "name": "saints-market",
-    "url": "https://gitee.com/skyRules/saints-workflow.git",
+    "url": "git@github.com:asdshuaishuai/saints-workflow.git",
     "type": "git"
   }
 ]
@@ -204,7 +204,7 @@ claude
 
 ```bash
 # 克隆仓库
-git clone https://gitee.com/skyRules/saints-workflow.git
+git clone git@github.com:asdshuaishuai/saints-workflow.git
 
 # 使用指定插件目录启动
 claude --plugin-dir ./saints-workflow
@@ -278,15 +278,15 @@ claude --plugin-dir ./saints-workflow
 
 | 命令 | 功能 | 示例 |
 |------|------|------|
-| `/saints-workflow:saints` | 完整工作流 | `/saints-workflow:saints 炼制登录法宝` |
-| `/saints-workflow:taiqing` | 仅规划 | `/saints-workflow:taiqing 卦象推演` |
-| `/saints-workflow:taig` | 原子化拆分 | `/saints-workflow:taig 拆解混沌` |
-| `/saints-workflow:fuxi` | 方案增强 | `/saints-workflow:fuxi 八卦演算` |
-| `/saints-workflow:yuanshi` | 功能开发 | `/saints-workflow:yuanshi 开天辟地` |
-| `/saints-workflow:lingbao` | 架构设计 | `/saints-workflow:lingbao 万仙布阵` |
+| `/saints-workflow:saints` | 完整工作流 | `/saints-workflow:saints 实现登录功能` |
+| `/saints-workflow:taiqing` | 仅规划 | `/saints-workflow:taiqing 需求分析` |
+| `/saints-workflow:taig` | 任务拆分 | `/saints-workflow:taig 拆分需求` |
+| `/saints-workflow:fuxi` | 需求分析 | `/saints-workflow:fuxi 上下文收集` |
+| `/saints-workflow:yuanshi` | 功能开发 | `/saints-workflow:yuanshi 功能实现` |
+| `/saints-workflow:lingbao` | 架构设计 | `/saints-workflow:lingbao 架构设计` |
 | `/saints-workflow:nva` | 测试验证 | `/saints-workflow:nva` |
 | `/saints-workflow:puti` | 代码审查 | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | 天道降临 | `/saints-workflow:tiandao` |
+| `/saints-workflow:tiandao` | 监管检查 | `/saints-workflow:tiandao` |
 
 ---
 
@@ -308,14 +308,19 @@ saints-workflow/
 │   └── puti.md              # 审查
 │
 ├── agents/                   # 自定义 Agents
-│   ├── taiqing.md           # 主控 (老子)
-│   ├── taig.md              # 原子化 (太极图)
-│   ├── fuxi.md              # 增强 (伏羲)
-│   ├── yuanshi.md           # 开发 (元始天尊)
-│   ├── lingbao.md           # 架构 (通天教主)
-│   ├── nva.md               # 测试 (女娲)
-│   ├── puti.md              # 审查 (准提道人)
-│   └── tiandao.md           # 监管 (天道)
+│   ├── taiqing.md           # 项目经理
+│   ├── taig.md              # 任务拆分
+│   ├── fuxi.md              # 需求分析
+│   ├── yuanshi.md           # 开发工程师
+│   ├── lingbao.md           # 架构师
+│   ├── nva.md               # 测试工程师
+│   ├── puti.md              # 代码审查
+│   └── tiandao.md           # 流程监管
+│
+├── skills/                   # 技能定义
+│   ├── saints/SKILL.md      # 工作流技能
+│   ├── tiandao/SKILL.md     # 监管技能
+│   └── bagua/SKILL.md       # 上下文分析
 │
 ├── README.md
 └── LICENSE
@@ -324,6 +329,12 @@ saints-workflow/
 ---
 
 ## 更新日志
+
+### v1.2.3 (2026-03-20)
+
+- **重构**：企业化术语版本
+- **文档**：标准产研测审一体化描述
+- **仓库**：迁移至 GitHub
 
 ### v1.2.2 (2026-03-19)
 
@@ -339,10 +350,9 @@ saints-workflow/
 
 ### v1.2.0 (2026-03-19)
 
-- **新增**：天道三分钟定时监管 (CronCreate)
-- **新增**：任务圆满自动解除天道 (CronDelete)
-- **新增**：洪荒韵味对话增强 (封神榜设定)
-- **优化**：诸圣对话尽皆文言
+- **新增**：定时流程监管 (CronCreate)
+- **新增**：任务完成自动解除监管 (CronDelete)
+- **新增**：企业化术语描述
 - **优化**：流程更加自动化
 
 ### v1.1.0 (2026-03-17)
@@ -351,7 +361,7 @@ saints-workflow/
 - **新增**：进度反馈 (每阶段输出状态)
 - **新增**：前端测试支持 (Vite, TypeScript)
 - **优化**：模型分配策略细化
-- **优化**：八卦上下文收集增强
+- **优化**：上下文收集增强
 
 ### v1.0.0 (2026-03-13)
 

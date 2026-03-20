@@ -1,16 +1,16 @@
-# 聖人ワークフロー (Saints Workflow)
+# エンタープライズワークフロー (Enterprise Workflow)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **言語**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
 
-中国神話「封神演義」に基づくClaude Codeプラグイン - インテリジェント開発協力システム
+Claude Code向けエンタープライズ開発協力プラグイン - 製品・開発・テスト・レビュー統合システム
 
 ---
 
 ## 概要
 
-聖人ワークフローは、7フェーズの開発プロセスを特徴とする完全なClaude Codeプラグインです：
+エンタープライズワークフローは、7フェーズの開発プロセスを特徴とする完全なClaude Codeプラグインです：
 
 ```
 [1] 計画 → [2] 分解・強化 → [3] 開発 → [4] テスト → [5] レビュー → [6] 確認 → [7] 強化・修正
@@ -18,29 +18,29 @@
 
 ### 主な機能
 
-- **天道による監視**: 3分ごとに自動介入し、逸脱を修正
-- **自動完了**: タスク完了時、天道監視を自動終了
+- **定時プロセス監視**: 3分ごとに自動チェック、異常時は介入
+- **自動完了**: タスク完了時、監視を自動終了
 - **動的モデル割り当て**: タスク複雑度に応じてモデルを自動選択 (opus/sonnet/haiku)
 - **並列タスク検出**: 並列実行可能なタスクを自動識別
 - **インテリジェントプロセス簡素化**: 単純なタスクは不要なフェーズをスキップ
 - **多言語サポート**: 10以上のプログラミング言語 + WebSearchによる動的学習
-- **神話的対話**: 封神演義スタイルの会話
+- **エンタープライズ用語**: 標準的な製品・開発・テスト・レビュー用語
 
 ---
 
-## 聖人システム (封神演義の設定)
+## 組織構造
 
 ```
                     ┌──────────────┐
-                    │  太清天尊    │
-                    │  (老子)      │
+                    │ プロジェクト  │
+                    │  マネージャー │
                     │  model: opus │
                     └──────┬───────┘
                            │
                            ▼
                 ┌─────────────────┐
-                │ 太極図 (法宝)   │
-                │ + 伏羲 (人皇)   │
+                │ タスク分解     │
+                │+ ビジネスアナリスト│
                 │ haiku + sonnet  │
                 └────────┬────────┘
                            │
@@ -48,8 +48,8 @@
             │              │              │
             ▼              ▼              ▼
       ┌──────────┐  ┌──────────┐  ┌──────────┐
-      │通天教主   │  │元始天尊   │  │   ...    │
-      │ (截教)   │  │ (闡教)   │  │          │
+      │アーキテクト│  │ 開発者   │  │   ...    │
+      │(技術)     │  │(コア)    │  │          │
       │  opus    │  │  sonnet  │  │          │
       └────┬─────┘  └────┬─────┘  └──────────┘
            │             │
@@ -57,15 +57,15 @@
                   │
                   ▼
            ┌──────────┐
-           │  女媧    │
-           │ (補天)   │
+           │   QA     │
+           │ エンジニア│
            │  haiku   │
            └────┬─────┘
                 │
                 ▼
            ┌──────────┐
-           │ 準提道人  │
-           │ (西方教)  │
+           │  コード   │
+           │ レビューアー│
            │  opus    │
            └────┬─────┘
                 │
@@ -78,44 +78,44 @@
 
 ---
 
-## 聖人一覧とモデル割り当て
+## 部門とモデル割り当て
 
-| 聖人 | 封神演義の身分 | 役割 | フェーズ | モデル |
-|------|---------------|------|:--------:|:------:|
-| 太清天尊 | 老子/道徳天尊 | 調整 | [1] | **opus** |
-| 太極図 | 太清法宝 | 原子分解 | [2] | **haiku** |
-| 伏羲氏 | 人皇/三皇の首 | 強化 | [2][7] | sonnet |
-| 元始天尊 | 闡教教主 | 開発 | [3] | sonnet |
-| 通天教主 | 截教教主 | アーキテクチャ | [3] | **opus** |
-| 女媧娘娘 | 大地の母 | テスト | [4] | **haiku** |
-| 準提道人 | 西方教聖人 | コードレビュー | [5] | **opus** |
-| 天道 | 形なし | 監視 | - | sonnet |
+| 部門 | 役割 | 責任 | フェーズ | モデル |
+|------|------|------|:--------:|:------:|
+| プロジェクトマネージャー | 調整 | 全体調整 | [1] | **opus** |
+| タスク分解 | 分析 | 要件の原子化 | [2] | **haiku** |
+| ビジネスアナリスト | 分析 | ソリューション強化 | [2][7] | sonnet |
+| 開発者 | コア開発 | 機能開発 | [3] | sonnet |
+| アーキテクト | 技術リード | アーキテクチャ設計 | [3] | **opus** |
+| QAエンジニア | 品質 | テスト・検証 | [4] | **haiku** |
+| コードレビューアー | 品質 | コードレビュー | [5] | **opus** |
+| プロセス監視 | 進捗 | プロセス監視 | - | sonnet |
 
 ---
 
-## 天道による監視 (V1.2)
+## プロセス監視 (V1.2)
 
 ### 起動
 
-タスク開始時、天道監視が自動的に起動します：
+タスク開始時、プロセス監視が自動的に起動します：
 
 ```
 CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
 ```
 
-### 介入
+### 定時チェック
 
-3分ごとに天道が降臨し、聖人たちを監視します：
+3分ごとに監視が自動的に進捗をチェックします：
 
 | 検出項目 | トリガー | 介入 |
 |----------|----------|------|
-| 怠惰 | 5分以上停滞 | 雷による督促 |
+| 停滞 | 5分以上進捗なし | プッシュ通知 |
 | ループ | 3回以上繰り返し | サイクルを断つ |
-| 混乱 | 2回以上躊躇 | 天音による導き |
+| 混乱 | 2回以上躊躇 | ガイダンス |
 
 ### 完了
 
-タスク完了時、天道は自動的に退場します：
+タスク完了時、監視は自動的に終了します：
 
 ```
 CronDelete(job_id: {トークン})
@@ -133,7 +133,7 @@ CronDelete(job_id: {トークン})
 
 ```bash
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone https://github.com/asdshuaishuai/saints-workflow.git \
+git clone git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -186,7 +186,7 @@ claude
 [
   {
     "name": "saints-market",
-    "url": "https://github.com/asdshuaishuai/saints-workflow.git",
+    "url": "git@github.com:asdshuaishuai/saints-workflow.git",
     "type": "git"
   }
 ]
@@ -201,7 +201,7 @@ claude
 ### 方法3: 開発テスト用
 
 ```bash
-git clone https://github.com/asdshuaishuai/saints-workflow.git
+git clone git@github.com:asdshuaishuai/saints-workflow.git
 claude --plugin-dir ./saints-workflow
 ```
 
@@ -219,15 +219,15 @@ claude --plugin-dir ./saints-workflow
 
 | コマンド | 機能 | 例 |
 |----------|------|-----|
-| `/saints-workflow:saints` | フルワークフロー | `/saints-workflow:saints ログイン法宝を錬成` |
-| `/saints-workflow:taiqing` | 計画のみ | `/saints-workflow:taiqing 卦象推演` |
-| `/saints-workflow:taig` | 原子分解 | `/saints-workflow:taig 混沌を解体` |
-| `/saints-workflow:fuxi` | 強化 | `/saints-workflow:fuxi 八卦演算` |
-| `/saints-workflow:yuanshi` | 開発 | `/saints-workflow:yuanshi 開天闢地` |
-| `/saints-workflow:lingbao` | アーキテクチャ | `/saints-workflow:lingbao 万仙布陣` |
+| `/saints-workflow:saints` | フルワークフロー | `/saints-workflow:saints ログイン実装` |
+| `/saints-workflow:taiqing` | 計画のみ | `/saints-workflow:taiqing 要件分析` |
+| `/saints-workflow:taig` | タスク分解 | `/saints-workflow:taig モジュール分解` |
+| `/saints-workflow:fuxi` | 分析 | `/saints-workflow:fuxi コンテキスト収集` |
+| `/saints-workflow:yuanshi` | 開発 | `/saints-workflow:yuanshi 機能実装` |
+| `/saints-workflow:lingbao` | アーキテクチャ | `/saints-workflow:lingbao システム設計` |
 | `/saints-workflow:nva` | テスト | `/saints-workflow:nva` |
 | `/saints-workflow:puti` | コードレビュー | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | 天道降臨 | `/saints-workflow:tiandao` |
+| `/saints-workflow:tiandao` | 監視チェック | `/saints-workflow:tiandao` |
 
 ---
 
@@ -242,25 +242,26 @@ saints-workflow/
 │   ├── saints.md            # メインエントリ
 │   ├── taiqing.md           # 計画
 │   ├── taig.md              # 分解
-│   ├── fuxi.md              # 強化
+│   ├── fuxi.md              # 分析
 │   ├── yuanshi.md           # 開発
 │   ├── lingbao.md           # アーキテクチャ
 │   ├── nva.md               # テスト
 │   └── puti.md              # レビュー
 │
 ├── agents/                   # カスタムエージェント
-│   ├── taiqing.md           # 調整者 (老子)
-│   ├── taig.md              # 原子化 (太極図)
-│   ├── fuxi.md              # 強化者 (伏羲)
-│   ├── yuanshi.md           # 開発者 (元始天尊)
-│   ├── lingbao.md           # 設計者 (通天教主)
-│   ├── nva.md               # テスター (女媧)
-│   ├── puti.md              # レビューアー (準提道人)
-│   └── tiandao.md           # 監視者 (天道)
+│   ├── taiqing.md           # プロジェクトマネージャー
+│   ├── taig.md              # タスク分解
+│   ├── fuxi.md              # ビジネスアナリスト
+│   ├── yuanshi.md           # 開発者
+│   ├── lingbao.md           # アーキテクト
+│   ├── nva.md               # QAエンジニア
+│   ├── puti.md              # コードレビューアー
+│   └── tiandao.md           # プロセス監視
 │
 ├── skills/                   # スキル
 │   ├── saints/
-│   └── tiandao/
+│   ├── tiandao/
+│   └── bagua/
 │
 ├── README.md
 ├── README_EN.md
@@ -272,19 +273,28 @@ saints-workflow/
 
 ## 更新履歴
 
+### v1.2.3 (2026-03-20)
+
+- **リファクタリング**: エンタープライズ用語バージョン
+- **ドキュメント**: 標準的な製品・開発・テスト・レビュー記述
+- **リポジトリ**: GitHubに移行
+
+### v1.2.2 (2026-03-19)
+
+- **ドキュメント**: 英語・日本語翻訳を追加
+- **ドキュメント**: 言語切り替えリンクを追加
+
 ### v1.2.1 (2026-03-19)
 
 - **ドキュメント**: インストール手順を詳細に改善
 - **ドキュメント**: 現在の環境設定例を追加
 - **ドキュメント**: マーケットプレース設定方法を追加
-- **ドキュメント**: 英語・日本語翻訳を追加
 
 ### v1.2.0 (2026-03-19)
 
-- **追加**: 3分間隔の天道監視 (CronCreate)
-- **追加**: タスク完了時の天道自動退場
-- **追加**: 神話的対話の強化
-- **改善**: 全聖人の古風な話し方
+- **追加**: 3分間隔のプロセス監視 (CronCreate)
+- **追加**: タスク完了時の監視自動終了
+- **追加**: エンタープライズ用語記述
 - **改善**: より自動化されたワークフロー
 
 ### v1.1.0 (2026-03-17)
@@ -293,7 +303,7 @@ saints-workflow/
 - **追加**: 各フェーズでの進捗フィードバック
 - **追加**: フロントエンドテストサポート (Vite, TypeScript)
 - **改善**: モデル割り当て戦略
-- **改善**: 八卦コンテキスト収集
+- **改善**: コンテキスト収集強化
 
 ### v1.0.0 (2026-03-13)
 

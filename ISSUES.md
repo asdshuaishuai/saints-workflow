@@ -9,11 +9,11 @@ Plugin 'saints-workflow' not found in marketplace 'local'
 ```
 
 ### 已尝试的修复
-1. ✅ 修复 agent 文件命名（去掉 `-agent` 后缀）
-2. ✅ 修复 Task() 调用中的 agent 名称引用
-3. ✅ 在 `settings.json` 的 `enabledPlugins` 中添加 `saints-workflow@local: true`
-4. ✅ 创建 `~/.claude/plugins/marketplaces/local/.claude-plugin/marketplace.json`
-5. ✅ 创建符号链接到 marketplace plugins 目录
+1. 修复 agent 文件命名（去掉 `-agent` 后缀）
+2. 修复 Task() 调用中的 agent 名称引用
+3. 在 `settings.json` 的 `enabledPlugins` 中添加 `saints-workflow@local: true`
+4. 创建 `~/.claude/plugins/marketplaces/local/.claude-plugin/marketplace.json`
+5. 创建符号链接到 marketplace plugins 目录
 
 ### 当前状态
 - `/reload-plugins` 显示: `1 error during load`

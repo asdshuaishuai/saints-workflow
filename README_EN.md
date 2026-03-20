@@ -1,16 +1,16 @@
-# Saints Workflow
+# Enterprise Workflow
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Languages**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
 
-A Claude Code plugin based on Chinese mythology "Investiture of the Gods" (Fengshen Bang) - Intelligent Development Collaboration System
+A Claude Code plugin for enterprise development collaboration - Integrated Product, Development, Testing, and Review System
 
 ---
 
 ## Overview
 
-Saints Workflow is a complete Claude Code plugin featuring a 7-phase development process:
+Enterprise Workflow is a complete Claude Code plugin featuring a 7-phase development process:
 
 ```
 [1] Planning → [2] Breakdown & Enhancement → [3] Development → [4] Testing → [5] Review → [6] Confirmation → [7] Enhancement & Fix
@@ -18,29 +18,29 @@ Saints Workflow is a complete Claude Code plugin featuring a 7-phase development
 
 ### Core Features
 
-- **Heavenly Dao Monitoring**: Automatic intervention every 3 minutes to correct deviations
-- **Automatic Completion**: Heavenly Dao monitoring ends automatically when tasks complete
+- **Scheduled Process Monitoring**: Automatic checks every 3 minutes with intervention
+- **Automatic Completion**: Monitoring ends automatically when tasks complete
 - **Dynamic Model Allocation**: Automatically selects models based on task complexity (opus/sonnet/haiku)
 - **Parallel Task Detection**: Automatically identifies tasks that can run in parallel
 - **Intelligent Process Simplification**: Simple tasks skip unnecessary phases
 - **Multi-language Support**: Supports 10+ programming languages + WebSearch for dynamic learning
-- **Mythological Dialogue**: Conversations styled after Fengshen Bang mythology
+- **Enterprise Terminology**: Standard product-development-testing-review terminology
 
 ---
 
-## Saints System (Fengshen Bang Lore)
+## Organization Structure
 
 ```
                     ┌──────────────┐
-                    │ Taiqing Sage │
-                    │   (Laozi)    │
+                    │Project Manager│
+                    │ (Coordination)│
                     │  model: opus │
                     └──────┬───────┘
                            │
                            ▼
                 ┌─────────────────┐
-                │ Taiji Diagram   │
-                    │ + Fuxi      │
+                │Task Breakdown   │
+                │+ Business Analyst│
                 │ haiku + sonnet  │
                 └────────┬────────┘
                            │
@@ -48,8 +48,8 @@ Saints Workflow is a complete Claude Code plugin featuring a 7-phase development
             │              │              │
             ▼              ▼              ▼
       ┌──────────┐  ┌──────────┐  ┌──────────┐
-      │ Tongtian │  │ Yuanshi  │  │   ...    │
-      │  (Jie)   │  │  (Chan)  │  │          │
+      │Architect │  │ Developer│  │   ...    │
+      │(Tech)    │  │(Core)    │  │          │
       │  opus    │  │  sonnet  │  │          │
       └────┬─────┘  └────┬─────┘  └──────────┘
            │             │
@@ -57,65 +57,65 @@ Saints Workflow is a complete Claude Code plugin featuring a 7-phase development
                   │
                   ▼
            ┌──────────┐
-           │  Nuwa    │
-           │ (Mending)│
+           │   QA     │
+           │ Engineer │
            │  haiku   │
            └────┬─────┘
                 │
                 ▼
            ┌──────────┐
-           │  Zhunti  │
-           │ (Western)│
+           │  Code    │
+           │ Reviewer │
            │  opus    │
            └────┬─────┘
                 │
                 ▼
            ┌──────────┐
            │  User    │
-           │Confirm   │
+           │ Confirm  │
            └──────────┘
 ```
 
 ---
 
-## Saints and Model Assignment
+## Departments and Model Assignment
 
-| Saint | Identity | Role | Phase | Model |
-|-------|----------|------|:-----:|:-----:|
-| Taiqing Sage | Laozi/Daoist Sage | Coordination | [1] | **opus** |
-| Taiji Diagram | Taiqing Artifact | Atomic Breakdown | [2] | **haiku** |
-| Fuxi | Human Emperor | Enhancement | [2][7] | sonnet |
-| Yuanshi Tianzun | Chan Leader | Development | [3] | sonnet |
-| Tongtian Jiaozhu | Jie Leader | Architecture | [3] | **opus** |
-| Nuwa | Mother Earth | Testing | [4] | **haiku** |
-| Zhunti | Western Sage | Code Review | [5] | **opus** |
-| Heavenly Dao | Formless | Monitoring | - | sonnet |
+| Department | Role | Responsibility | Phase | Model |
+|------------|------|----------------|:-----:|:-----:|
+| Project Manager | Coordination | Overall coordination | [1] | **opus** |
+| Task Breakdown | Analysis | Requirement atomization | [2] | **haiku** |
+| Business Analyst | Analysis | Solution enhancement | [2][7] | sonnet |
+| Developer | Core Dev | Feature development | [3] | sonnet |
+| Architect | Tech Lead | Architecture design | [3] | **opus** |
+| QA Engineer | Quality | Testing & validation | [4] | **haiku** |
+| Code Reviewer | Quality | Code review | [5] | **opus** |
+| Process Monitor | Progress | Process monitoring | - | sonnet |
 
 ---
 
-## Heavenly Dao Monitoring (V1.2)
+## Process Monitoring (V1.2)
 
 ### Activation
 
-When a task starts, Heavenly Dao monitoring is automatically activated:
+When a task starts, process monitoring is automatically activated:
 
 ```
 CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
 ```
 
-### Interventions
+### Scheduled Checks
 
-Every 3 minutes, Heavenly Dao descends to monitor the saints:
+Every 3 minutes, the monitor automatically checks progress:
 
 | Detection | Trigger | Intervention |
 |-----------|---------|--------------|
-| Idleness | Stalled > 5 min | Thunder催促 |
+| Stalled | No progress > 5 min | Push notification |
 | Loop | Repeated > 3 times | Break the cycle |
-| Confusion | Hesitated > 2 times | Divine guidance |
+| Confusion | Hesitated > 2 times | Guidance |
 
 ### Completion
 
-When tasks complete, Heavenly Dao automatically withdraws:
+When tasks complete, monitoring automatically ends:
 
 ```
 CronDelete(job_id: {token})
@@ -133,7 +133,7 @@ Install directly to the local cache directory without marketplace configuration.
 
 ```bash
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone https://github.com/asdshuaishuai/saints-workflow.git \
+git clone git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -186,7 +186,7 @@ Edit `~/.claude/plugins/marketplaces.json`:
 [
   {
     "name": "saints-market",
-    "url": "https://github.com/asdshuaishuai/saints-workflow.git",
+    "url": "git@github.com:asdshuaishuai/saints-workflow.git",
     "type": "git"
   }
 ]
@@ -201,7 +201,7 @@ Edit `~/.claude/plugins/marketplaces.json`:
 ### Method 3: Development Testing
 
 ```bash
-git clone https://github.com/asdshuaishuai/saints-workflow.git
+git clone git@github.com:asdshuaishuai/saints-workflow.git
 claude --plugin-dir ./saints-workflow
 ```
 
@@ -219,15 +219,15 @@ claude --plugin-dir ./saints-workflow
 
 | Command | Function | Example |
 |---------|----------|---------|
-| `/saints-workflow:saints` | Full workflow | `/saints-workflow:saints Create login artifact` |
+| `/saints-workflow:saints` | Full workflow | `/saints-workflow:saints Implement login` |
 | `/saints-workflow:taiqing` | Planning only | `/saints-workflow:taiqing Analyze requirements` |
-| `/saints-workflow:taig` | Atomic breakdown | `/saints-workflow:taig Break down module` |
-| `/saints-workflow:fuxi` | Enhancement | `/saints-workflow:fuxi Enhance solution` |
+| `/saints-workflow:taig` | Task breakdown | `/saints-workflow:taig Break down module` |
+| `/saints-workflow:fuxi` | Analysis | `/saints-workflow:fuxi Context collection` |
 | `/saints-workflow:yuanshi` | Development | `/saints-workflow:yuanshi Implement feature` |
 | `/saints-workflow:lingbao` | Architecture | `/saints-workflow:lingbao Design system` |
 | `/saints-workflow:nva` | Testing | `/saints-workflow:nva` |
 | `/saints-workflow:puti` | Code review | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | Heavenly Dao | `/saints-workflow:tiandao` |
+| `/saints-workflow:tiandao` | Monitor check | `/saints-workflow:tiandao` |
 
 ---
 
@@ -242,25 +242,26 @@ saints-workflow/
 │   ├── saints.md            # Main entry
 │   ├── taiqing.md           # Planning
 │   ├── taig.md              # Breakdown
-│   ├── fuxi.md              # Enhancement
+│   ├── fuxi.md              # Analysis
 │   ├── yuanshi.md           # Development
 │   ├── lingbao.md           # Architecture
 │   ├── nva.md               # Testing
 │   └── puti.md              # Review
 │
 ├── agents/                   # Custom Agents
-│   ├── taiqing.md           # Coordinator (Laozi)
-│   ├── taig.md              # Atomic (Taiji)
-│   ├── fuxi.md              # Enhancer (Fuxi)
-│   ├── yuanshi.md           # Developer (Yuanshi)
-│   ├── lingbao.md           # Architect (Tongtian)
-│   ├── nva.md               # Tester (Nuwa)
-│   ├── puti.md              # Reviewer (Zhunti)
-│   └── tiandao.md           # Monitor (Heavenly Dao)
+│   ├── taiqing.md           # Project Manager
+│   ├── taig.md              # Task Breakdown
+│   ├── fuxi.md              # Business Analyst
+│   ├── yuanshi.md           # Developer
+│   ├── lingbao.md           # Architect
+│   ├── nva.md               # QA Engineer
+│   ├── puti.md              # Code Reviewer
+│   └── tiandao.md           # Process Monitor
 │
 ├── skills/                   # Skills
 │   ├── saints/
-│   └── tiandao/
+│   ├── tiandao/
+│   └── bagua/
 │
 ├── README.md
 ├── README_EN.md
@@ -272,19 +273,28 @@ saints-workflow/
 
 ## Changelog
 
+### v1.2.3 (2026-03-20)
+
+- **Refactor**: Enterprise terminology version
+- **Docs**: Standard product-development-testing-review descriptions
+- **Repo**: Migrated to GitHub
+
+### v1.2.2 (2026-03-19)
+
+- **Docs**: Added English and Japanese translations
+- **Docs**: Added language switching links
+
 ### v1.2.1 (2026-03-19)
 
 - **Docs**: Improved installation instructions with detailed local setup steps
 - **Docs**: Added current environment configuration examples
 - **Docs**: Added marketplace configuration instructions
-- **Docs**: Added English and Japanese translations
 
 ### v1.2.0 (2026-03-19)
 
-- **Added**: 3-minute Heavenly Dao monitoring (CronCreate)
-- **Added**: Automatic Heavenly Dao withdrawal on task completion
-- **Added**: Mythological dialogue enhancement
-- **Improved**: All saints now speak in classical Chinese style
+- **Added**: 3-minute process monitoring (CronCreate)
+- **Added**: Automatic monitoring withdrawal on task completion
+- **Added**: Enterprise terminology descriptions
 - **Improved**: More automated workflow
 
 ### v1.1.0 (2026-03-17)
@@ -293,7 +303,7 @@ saints-workflow/
 - **Added**: Progress feedback at each phase
 - **Added**: Frontend testing support (Vite, TypeScript)
 - **Improved**: Model allocation strategy
-- **Improved**: Eight Trigrams context collection
+- **Improved**: Context collection enhancement
 
 ### v1.0.0 (2026-03-13)
 
