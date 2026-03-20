@@ -18,7 +18,7 @@ Enterprise Workflow is a complete Claude Code plugin featuring a 7-phase develop
 
 ### Core Features
 
-- **Scheduled Process Monitoring**: Automatic checks every 3 minutes with intervention
+- **Scheduled Process Monitoring**: Automatic checks every 2 minutes with intervention
 - **Automatic Completion**: Monitoring ends automatically when tasks complete
 - **Dynamic Model Allocation**: Automatically selects models based on task complexity (opus/sonnet/haiku)
 - **Parallel Task Detection**: Automatically identifies tasks that can run in parallel
@@ -100,12 +100,12 @@ Enterprise Workflow is a complete Claude Code plugin featuring a 7-phase develop
 When a task starts, process monitoring is automatically activated:
 
 ```
-CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
 ```
 
 ### Scheduled Checks
 
-Every 3 minutes, the monitor automatically checks progress:
+Every 2 minutes, the monitor automatically checks progress:
 
 | Detection | Trigger | Intervention |
 |-----------|---------|--------------|

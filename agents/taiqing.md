@@ -63,7 +63,7 @@ color: blue
 ### 开启监管
 
 ```
-CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
 ```
 
 记录监管令牌，待任务完成时解除。
