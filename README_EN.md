@@ -132,8 +132,9 @@ Install directly to the local cache directory without marketplace configuration.
 **Step 1: Clone to local cache**
 
 ```bash
+# Clone (Enterprise terminology version)
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone git@github.com:asdshuaishuai/saints-workflow.git \
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -201,7 +202,8 @@ Edit `~/.claude/plugins/marketplaces.json`:
 ### Method 3: Development Testing
 
 ```bash
-git clone git@github.com:asdshuaishuai/saints-workflow.git
+# Clone (Enterprise terminology version)
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git
 claude --plugin-dir ./saints-workflow
 ```
 

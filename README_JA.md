@@ -132,8 +132,9 @@ CronDelete(job_id: {トークン})
 **ステップ1: ローカルキャッシュにクローン**
 
 ```bash
+# エンタープライズ用語バージョンをクローン
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone git@github.com:asdshuaishuai/saints-workflow.git \
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -201,7 +202,8 @@ claude
 ### 方法3: 開発テスト用
 
 ```bash
-git clone git@github.com:asdshuaishuai/saints-workflow.git
+# エンタープライズ用語バージョンをクローン
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git
 claude --plugin-dir ./saints-workflow
 ```
 

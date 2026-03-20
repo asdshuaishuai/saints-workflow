@@ -131,9 +131,9 @@ CronDelete(job_id: {监管令牌})
 **步骤 1：克隆插件到本地缓存**
 
 ```bash
-# 创建目录并克隆
+# 创建目录并克隆 (企业术语版本)
 mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone git@github.com:asdshuaishuai/saints-workflow.git \
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git \
   ~/.claude/plugins/cache/local/saints-workflow/1.2.0
 ```
 
@@ -203,8 +203,8 @@ claude
 ### 方法三：使用 --plugin-dir 测试（开发调试用）
 
 ```bash
-# 克隆仓库
-git clone git@github.com:asdshuaishuai/saints-workflow.git
+# 克隆仓库 (企业术语版本)
+git clone -b feature/enterprise-version git@github.com:asdshuaishuai/saints-workflow.git
 
 # 使用指定插件目录启动
 claude --plugin-dir ./saints-workflow
