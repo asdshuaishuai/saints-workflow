@@ -12,7 +12,7 @@ description: 开发工程师 · 核心开发，功能实现
 ## 执行
 
 ```
-Task(yuanshi, prompt: "【开发任务】功能实现: $ARGUMENTS")
+Task(dev, prompt: "【开发任务】功能实现: $ARGUMENTS")
 ```
 
 ## 编码规范

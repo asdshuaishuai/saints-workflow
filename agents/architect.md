@@ -1,5 +1,5 @@
 ---
-name: lingbao
+name: architect
 description: 架构师 - 系统架构设计，负责技术选型、架构规划、重构方案。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: opus

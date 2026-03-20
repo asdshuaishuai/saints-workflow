@@ -24,7 +24,7 @@ description: 企业工作流 · 产研测审一体化协作系统
 **第一步：开启流程监管**
 
 ```
-CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:monitor", recurring: true)
 ```
 
 流程监管器每两分钟自动检查进度，发现停滞、迷茫、循环等问题时，及时干预纠正。
@@ -32,7 +32,7 @@ CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: t
 **第二步：启动项目经理**
 
 ```
-Task(taiqing, prompt: "【监管已开启】执行企业工作流: $ARGUMENTS")
+Task(pm, prompt: "【监管已开启】执行企业工作流: $ARGUMENTS")
 ```
 
 ## 部门职能
@@ -106,15 +106,15 @@ Task(taiqing, prompt: "【监管已开启】执行企业工作流: $ARGUMENTS")
 
 | 命令 | 职能 | 示例 |
 |------|------|------|
-| `/saints 任务` | 完整工作流 | `/saints 实现登录功能` |
-| `/taiqing 任务` | 仅规划 | `/taiqing 需求分析` |
-| `/taig 任务` | 任务拆分 | `/taig 拆分需求` |
-| `/fuxi 任务` | 需求分析 | `/fuxi 上下文收集` |
-| `/yuanshi 任务` | 开发 | `/yuanshi 功能开发` |
-| `/lingbao 任务` | 架构 | `/lingbao 架构设计` |
-| `/nva` | 测试 | `/nva` |
-| `/puti` | 审查 | `/puti` |
-| `/tiandao` | 监管检查 | `/tiandao` |
+| `/workflow 任务` | 完整工作流 | `/workflow 实现登录功能` |
+| `/pm 任务` | 仅规划 | `/pm 需求分析` |
+| `/breakdown 任务` | 任务拆分 | `/breakdown 拆分需求` |
+| `/analyst 任务` | 需求分析 | `/analyst 上下文收集` |
+| `/dev 任务` | 开发 | `/dev 功能开发` |
+| `/architect 任务` | 架构 | `/architect 架构设计` |
+| `/qa` | 测试 | `/qa` |
+| `/reviewer` | 审查 | `/reviewer` |
+| `/monitor` | 监管检查 | `/monitor` |
 
 ---
 

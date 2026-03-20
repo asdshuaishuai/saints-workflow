@@ -1,5 +1,5 @@
 ---
-name: fuxi
+name: analyst
 description: 需求分析师 - 负责上下文收集、需求分析、方案增强、风险评估。
 tools: Bash, Read, Grep, Glob, WebSearch, WebFetch, Task, AskUserQuestion
 model: sonnet

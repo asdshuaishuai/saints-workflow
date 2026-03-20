@@ -99,7 +99,7 @@
 任务开始时，自动开启流程监管：
 
 ```
-CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:monitor", recurring: true)
 ```
 
 ### 定时检查
@@ -271,22 +271,22 @@ claude --plugin-dir ./saints-workflow
 ### 完整工作流
 
 ```
-/saints-workflow:saints 实现用户登录功能
+/saints-workflow:workflow 实现用户登录功能
 ```
 
 ### 单独调用
 
 | 命令 | 功能 | 示例 |
 |------|------|------|
-| `/saints-workflow:saints` | 完整工作流 | `/saints-workflow:saints 实现登录功能` |
-| `/saints-workflow:taiqing` | 仅规划 | `/saints-workflow:taiqing 需求分析` |
-| `/saints-workflow:taig` | 任务拆分 | `/saints-workflow:taig 拆分需求` |
-| `/saints-workflow:fuxi` | 需求分析 | `/saints-workflow:fuxi 上下文收集` |
-| `/saints-workflow:yuanshi` | 功能开发 | `/saints-workflow:yuanshi 功能实现` |
-| `/saints-workflow:lingbao` | 架构设计 | `/saints-workflow:lingbao 架构设计` |
-| `/saints-workflow:nva` | 测试验证 | `/saints-workflow:nva` |
-| `/saints-workflow:puti` | 代码审查 | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | 监管检查 | `/saints-workflow:tiandao` |
+| `/saints-workflow:workflow` | 完整工作流 | `/saints-workflow:workflow 实现登录功能` |
+| `/saints-workflow:pm` | 仅规划 | `/saints-workflow:pm 需求分析` |
+| `/saints-workflow:breakdown` | 任务拆分 | `/saints-workflow:breakdown 拆分需求` |
+| `/saints-workflow:analyst` | 需求分析 | `/saints-workflow:analyst 上下文收集` |
+| `/saints-workflow:dev` | 功能开发 | `/saints-workflow:dev 功能实现` |
+| `/saints-workflow:architect` | 架构设计 | `/saints-workflow:architect 架构设计` |
+| `/saints-workflow:qa` | 测试验证 | `/saints-workflow:qa` |
+| `/saints-workflow:reviewer` | 代码审查 | `/saints-workflow:reviewer` |
+| `/saints-workflow:monitor` | 监管检查 | `/saints-workflow:monitor` |
 
 ---
 
@@ -298,29 +298,29 @@ saints-workflow/
 │   └── plugin.json          # 插件清单
 │
 ├── commands/                 # Slash Commands
-│   ├── saints.md            # 主入口
-│   ├── taiqing.md           # 规划
-│   ├── taig.md              # 拆分
-│   ├── fuxi.md              # 增强
-│   ├── yuanshi.md           # 开发
-│   ├── lingbao.md           # 架构
-│   ├── nva.md               # 测试
-│   └── puti.md              # 审查
+│   ├── workflow.md          # 主入口
+│   ├── pm.md                # 规划
+│   ├── breakdown.md         # 拆分
+│   ├── analyst.md           # 分析
+│   ├── dev.md               # 开发
+│   ├── architect.md         # 架构
+│   ├── qa.md                # 测试
+│   └── reviewer.md          # 审查
 │
 ├── agents/                   # 自定义 Agents
-│   ├── taiqing.md           # 项目经理
-│   ├── taig.md              # 任务拆分
-│   ├── fuxi.md              # 需求分析
-│   ├── yuanshi.md           # 开发工程师
-│   ├── lingbao.md           # 架构师
-│   ├── nva.md               # 测试工程师
-│   ├── puti.md              # 代码审查
-│   └── tiandao.md           # 流程监管
+│   ├── pm.md                # 项目经理
+│   ├── breakdown.md         # 任务拆分
+│   ├── analyst.md           # 需求分析
+│   ├── dev.md               # 开发工程师
+│   ├── architect.md         # 架构师
+│   ├── qa.md                # 测试工程师
+│   ├── reviewer.md          # 代码审查
+│   └── monitor.md           # 流程监管
 │
 ├── skills/                   # 技能定义
-│   ├── saints/SKILL.md      # 工作流技能
-│   ├── tiandao/SKILL.md     # 监管技能
-│   └── bagua/SKILL.md       # 上下文分析
+│   ├── workflow/SKILL.md    # 工作流技能
+│   ├── monitor/SKILL.md     # 监管技能
+│   └── context/SKILL.md     # 上下文分析
 │
 ├── README.md
 └── LICENSE

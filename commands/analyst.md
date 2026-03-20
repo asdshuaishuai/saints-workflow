@@ -12,7 +12,7 @@ description: 需求分析师 · 八维度上下文收集，方案增强
 ## 执行
 
 ```
-Task(fuxi, prompt: "【需求分析】上下文收集: $ARGUMENTS")
+Task(analyst, prompt: "【需求分析】上下文收集: $ARGUMENTS")
 ```
 
 ## 八维度分析

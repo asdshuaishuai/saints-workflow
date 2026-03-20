@@ -1,5 +1,5 @@
 ---
-name: tiandao
+name: monitor
 description: 流程监管器 - 定时监控任务进度，检测异常，自动干预引导正向。
 ---
 
@@ -67,8 +67,8 @@ CronDelete(job_id: {监管令牌})
 
 ```
 # 由 CronCreate 自动调用
-/saints-workflow:tiandao
+/saints-workflow:monitor
 
 # 或手动调用
-/tiandao
+/monitor
 ```

@@ -1,5 +1,5 @@
 ---
-name: puti
+name: reviewer
 description: 代码审查工程师 - 负责代码审查、质量评估、安全检查。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion, WebSearch, WebFetch
 model: opus

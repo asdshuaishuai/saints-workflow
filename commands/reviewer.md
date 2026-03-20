@@ -10,7 +10,7 @@ description: 代码审查工程师 · 代码审查，质量把关
 ## 执行
 
 ```
-Task(puti)
+Task(reviewer)
 ```
 
 ## 审查维度

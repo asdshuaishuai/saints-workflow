@@ -12,7 +12,7 @@ description: 任务拆分引擎 · 需求原子化，并行识别
 ## 执行
 
 ```
-Task(taig, prompt: "【任务拆分】细化需求: $ARGUMENTS")
+Task(breakdown, prompt: "【任务拆分】细化需求: $ARGUMENTS")
 ```
 
 ## 并行标记

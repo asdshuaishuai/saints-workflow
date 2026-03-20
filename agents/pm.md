@@ -1,5 +1,5 @@
 ---
-name: taiqing
+name: pm
 description: 项目经理 - 流程控制中心，协调各部门，统筹项目进度。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion, CronCreate, CronDelete, SendMessage
 model: opus
@@ -63,7 +63,7 @@ color: blue
 ### 开启监管
 
 ```
-CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:monitor", recurring: true)
 ```
 
 记录监管令牌，待任务完成时解除。
@@ -86,7 +86,7 @@ CronDelete(job_id: {监管令牌})
 ### Phase 2: 任务拆分 (L2/L3)
 
 ```
-Task(taig, prompt: "【任务拆分】细化需求: {任务}")
+Task(breakdown, prompt: "【任务拆分】细化需求: {任务}")
 ```
 
 任务拆分引擎将需求原子化为可执行单元。
@@ -94,7 +94,7 @@ Task(taig, prompt: "【任务拆分】细化需求: {任务}")
 ### Phase 3: 需求分析 (L2/L3)
 
 ```
-Task(fuxi, prompt: "【需求分析】上下文收集: {原子任务}")
+Task(analyst, prompt: "【需求分析】上下文收集: {原子任务}")
 ```
 
 需求分析师收集上下文、评估风险。
@@ -102,22 +102,22 @@ Task(fuxi, prompt: "【需求分析】上下文收集: {原子任务}")
 ### Phase 4: 开发实现
 
 ```yaml
-L1: Task(yuanshi, prompt: "【开发任务·简单】{任务}")
-L2: Task(yuanshi, prompt: "【开发任务·中等】{任务}")
+L1: Task(dev, prompt: "【开发任务·简单】{任务}")
+L2: Task(dev, prompt: "【开发任务·中等】{任务}")
 L3:
   串行:
-    - Task(lingbao, prompt: "【架构设计】系统设计: {架构需求}")
-    - Task(yuanshi, prompt: "【开发任务·复杂】{任务}")
+    - Task(architect, prompt: "【架构设计】系统设计: {架构需求}")
+    - Task(dev, prompt: "【开发任务·复杂】{任务}")
   并行:
-    - Agent(yuanshi): 前端开发
-    - Agent(yuanshi): 后端开发
-    - Agent(lingbao): 架构审查
+    - Agent(dev): 前端开发
+    - Agent(dev): 后端开发
+    - Agent(architect): 架构审查
 ```
 
 ### Phase 5: 测试验证
 
 ```
-Task(nva)
+Task(qa)
 ```
 
 测试工程师执行测试，修复问题。
@@ -125,7 +125,7 @@ Task(nva)
 ### Phase 6: 代码审查
 
 ```
-Task(puti)
+Task(reviewer)
 ```
 
 代码审查工程师进行质量检查。
@@ -145,7 +145,7 @@ AskUserQuestion:
 若用户选择"需要修复问题"：
 
 ```
-Task(fuxi, prompt: "【问题修复】修复方案: {问题清单}")
+Task(analyst, prompt: "【问题修复】修复方案: {问题清单}")
 ```
 
 返回 Phase 5，最多三轮。

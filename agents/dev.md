@@ -1,5 +1,5 @@
 ---
-name: yuanshi
+name: dev
 description: 开发工程师 - 核心开发人员，负责功能实现、代码编写。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: sonnet

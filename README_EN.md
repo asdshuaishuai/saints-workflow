@@ -100,7 +100,7 @@ Enterprise Workflow is a complete Claude Code plugin featuring a 7-phase develop
 When a task starts, process monitoring is automatically activated:
 
 ```
-CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:monitor", recurring: true)
 ```
 
 ### Scheduled Checks
@@ -214,22 +214,22 @@ claude --plugin-dir ./saints-workflow
 ### Full Workflow
 
 ```
-/saints-workflow:saints Implement user login feature
+/saints-workflow:workflow Implement user login feature
 ```
 
 ### Individual Commands
 
 | Command | Function | Example |
 |---------|----------|---------|
-| `/saints-workflow:saints` | Full workflow | `/saints-workflow:saints Implement login` |
-| `/saints-workflow:taiqing` | Planning only | `/saints-workflow:taiqing Analyze requirements` |
-| `/saints-workflow:taig` | Task breakdown | `/saints-workflow:taig Break down module` |
-| `/saints-workflow:fuxi` | Analysis | `/saints-workflow:fuxi Context collection` |
-| `/saints-workflow:yuanshi` | Development | `/saints-workflow:yuanshi Implement feature` |
-| `/saints-workflow:lingbao` | Architecture | `/saints-workflow:lingbao Design system` |
-| `/saints-workflow:nva` | Testing | `/saints-workflow:nva` |
-| `/saints-workflow:puti` | Code review | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | Monitor check | `/saints-workflow:tiandao` |
+| `/saints-workflow:workflow` | Full workflow | `/saints-workflow:workflow Implement login` |
+| `/saints-workflow:pm` | Planning only | `/saints-workflow:pm Analyze requirements` |
+| `/saints-workflow:breakdown` | Task breakdown | `/saints-workflow:breakdown Break down module` |
+| `/saints-workflow:analyst` | Analysis | `/saints-workflow:analyst Context collection` |
+| `/saints-workflow:dev` | Development | `/saints-workflow:dev Implement feature` |
+| `/saints-workflow:architect` | Architecture | `/saints-workflow:architect Design system` |
+| `/saints-workflow:qa` | Testing | `/saints-workflow:qa` |
+| `/saints-workflow:reviewer` | Code review | `/saints-workflow:reviewer` |
+| `/saints-workflow:monitor` | Monitor check | `/saints-workflow:monitor` |
 
 ---
 
@@ -241,29 +241,29 @@ saints-workflow/
 │   └── plugin.json          # Plugin manifest
 │
 ├── commands/                 # Slash Commands
-│   ├── saints.md            # Main entry
-│   ├── taiqing.md           # Planning
-│   ├── taig.md              # Breakdown
-│   ├── fuxi.md              # Analysis
-│   ├── yuanshi.md           # Development
-│   ├── lingbao.md           # Architecture
-│   ├── nva.md               # Testing
-│   └── puti.md              # Review
+│   ├── workflow.md          # Main entry
+│   ├── pm.md                # Planning
+│   ├── breakdown.md         # Breakdown
+│   ├── analyst.md           # Analysis
+│   ├── dev.md               # Development
+│   ├── architect.md         # Architecture
+│   ├── qa.md                # Testing
+│   └── reviewer.md          # Review
 │
 ├── agents/                   # Custom Agents
-│   ├── taiqing.md           # Project Manager
-│   ├── taig.md              # Task Breakdown
-│   ├── fuxi.md              # Business Analyst
-│   ├── yuanshi.md           # Developer
-│   ├── lingbao.md           # Architect
-│   ├── nva.md               # QA Engineer
-│   ├── puti.md              # Code Reviewer
-│   └── tiandao.md           # Process Monitor
+│   ├── pm.md                # Project Manager
+│   ├── breakdown.md         # Task Breakdown
+│   ├── analyst.md           # Business Analyst
+│   ├── dev.md               # Developer
+│   ├── architect.md         # Architect
+│   ├── qa.md                # QA Engineer
+│   ├── reviewer.md          # Code Reviewer
+│   └── monitor.md           # Process Monitor
 │
 ├── skills/                   # Skills
-│   ├── saints/
-│   ├── tiandao/
-│   └── bagua/
+│   ├── workflow/
+│   ├── monitor/
+│   └── context/
 │
 ├── README.md
 ├── README_EN.md

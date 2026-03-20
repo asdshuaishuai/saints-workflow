@@ -12,7 +12,7 @@ description: 架构师 · 系统架构设计，技术选型
 ## 执行
 
 ```
-Task(lingbao, prompt: "【架构设计】系统设计: $ARGUMENTS")
+Task(architect, prompt: "【架构设计】系统设计: $ARGUMENTS")
 ```
 
 ## 架构职责

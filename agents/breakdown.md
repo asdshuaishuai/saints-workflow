@@ -1,5 +1,5 @@
 ---
-name: taig
+name: breakdown
 description: 任务拆分引擎 - 负责需求原子化、任务拆分、并行识别。
 tools: Bash, Read, Grep, Glob, Task
 model: haiku

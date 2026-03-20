@@ -12,7 +12,7 @@ description: 项目经理 · 统筹协调，调度各部门
 ## 执行
 
 ```
-Task(taiqing, prompt: "【监管已开启】执行企业工作流: $ARGUMENTS")
+Task(pm, prompt: "【监管已开启】执行企业工作流: $ARGUMENTS")
 ```
 
 ## 项目经理职责

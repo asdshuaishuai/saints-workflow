@@ -1,5 +1,5 @@
 ---
-name: nva
+name: qa
 description: 测试工程师 - 负责测试验证、问题修复，确保代码质量。
 tools: Bash, Read, Edit, Write, Grep, Glob, Task, WebSearch, WebFetch
 model: haiku

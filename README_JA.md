@@ -100,7 +100,7 @@ Claude Code向けエンタープライズ開発協力プラグイン - 製品・
 タスク開始時、プロセス監視が自動的に起動します：
 
 ```
-CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
+CronCreate(cron: "*/2 * * * *", prompt: "/saints-workflow:monitor", recurring: true)
 ```
 
 ### 定時チェック
@@ -214,22 +214,22 @@ claude --plugin-dir ./saints-workflow
 ### フルワークフロー
 
 ```
-/saints-workflow:saints ユーザーログイン機能を実装
+/saints-workflow:workflow ユーザーログイン機能を実装
 ```
 
 ### 個別コマンド
 
 | コマンド | 機能 | 例 |
 |----------|------|-----|
-| `/saints-workflow:saints` | フルワークフロー | `/saints-workflow:saints ログイン実装` |
-| `/saints-workflow:taiqing` | 計画のみ | `/saints-workflow:taiqing 要件分析` |
-| `/saints-workflow:taig` | タスク分解 | `/saints-workflow:taig モジュール分解` |
-| `/saints-workflow:fuxi` | 分析 | `/saints-workflow:fuxi コンテキスト収集` |
-| `/saints-workflow:yuanshi` | 開発 | `/saints-workflow:yuanshi 機能実装` |
-| `/saints-workflow:lingbao` | アーキテクチャ | `/saints-workflow:lingbao システム設計` |
-| `/saints-workflow:nva` | テスト | `/saints-workflow:nva` |
-| `/saints-workflow:puti` | コードレビュー | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | 監視チェック | `/saints-workflow:tiandao` |
+| `/saints-workflow:workflow` | フルワークフロー | `/saints-workflow:workflow ログイン実装` |
+| `/saints-workflow:pm` | 計画のみ | `/saints-workflow:pm 要件分析` |
+| `/saints-workflow:breakdown` | タスク分解 | `/saints-workflow:breakdown モジュール分解` |
+| `/saints-workflow:analyst` | 分析 | `/saints-workflow:analyst コンテキスト収集` |
+| `/saints-workflow:dev` | 開発 | `/saints-workflow:dev 機能実装` |
+| `/saints-workflow:architect` | アーキテクチャ | `/saints-workflow:architect システム設計` |
+| `/saints-workflow:qa` | テスト | `/saints-workflow:qa` |
+| `/saints-workflow:reviewer` | コードレビュー | `/saints-workflow:reviewer` |
+| `/saints-workflow:monitor` | 監視チェック | `/saints-workflow:monitor` |
 
 ---
 
@@ -241,29 +241,29 @@ saints-workflow/
 │   └── plugin.json          # プラグインマニフェスト
 │
 ├── commands/                 # スラッシュコマンド
-│   ├── saints.md            # メインエントリ
-│   ├── taiqing.md           # 計画
-│   ├── taig.md              # 分解
-│   ├── fuxi.md              # 分析
-│   ├── yuanshi.md           # 開発
-│   ├── lingbao.md           # アーキテクチャ
-│   ├── nva.md               # テスト
-│   └── puti.md              # レビュー
+│   ├── workflow.md          # メインエントリ
+│   ├── pm.md                # 計画
+│   ├── breakdown.md         # 分解
+│   ├── analyst.md           # 分析
+│   ├── dev.md               # 開発
+│   ├── architect.md         # アーキテクチャ
+│   ├── qa.md                # テスト
+│   └── reviewer.md          # レビュー
 │
 ├── agents/                   # カスタムエージェント
-│   ├── taiqing.md           # プロジェクトマネージャー
-│   ├── taig.md              # タスク分解
-│   ├── fuxi.md              # ビジネスアナリスト
-│   ├── yuanshi.md           # 開発者
-│   ├── lingbao.md           # アーキテクト
-│   ├── nva.md               # QAエンジニア
-│   ├── puti.md              # コードレビューアー
-│   └── tiandao.md           # プロセス監視
+│   ├── pm.md                # プロジェクトマネージャー
+│   ├── breakdown.md         # タスク分解
+│   ├── analyst.md           # ビジネスアナリスト
+│   ├── dev.md               # 開発者
+│   ├── architect.md         # アーキテクト
+│   ├── qa.md                # QAエンジニア
+│   ├── reviewer.md          # コードレビューアー
+│   └── monitor.md           # プロセス監視
 │
 ├── skills/                   # スキル
-│   ├── saints/
-│   ├── tiandao/
-│   └── bagua/
+│   ├── workflow/
+│   ├── monitor/
+│   └── context/
 │
 ├── README.md
 ├── README_EN.md

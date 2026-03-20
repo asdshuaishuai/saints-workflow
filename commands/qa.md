@@ -10,7 +10,7 @@ description: 测试工程师 · 测试验证，问题修复
 ## 执行
 
 ```
-Task(nva)
+Task(qa)
 ```
 
 ## 测试策略

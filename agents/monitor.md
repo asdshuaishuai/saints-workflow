@@ -1,5 +1,5 @@
 ---
-name: tiandao
+name: monitor
 description: 流程监管器 - 定时监控任务进度，检测异常，自动干预引导正向。
 tools: Bash, Read, Grep, Glob, Task, AskUserQuestion, CronDelete
 model: sonnet
@@ -32,7 +32,7 @@ color: red
 ```yaml
 定时监控:
   周期: "*/2 * * * *"
-  调用: /saints-workflow:tiandao
+  调用: /saints-workflow:monitor
   职责: 检查进度，异常干预
 
 检查步骤:
