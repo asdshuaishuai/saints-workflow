@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>圣人工作流 - Saints Workflow</title>
-    <meta name="description" content="基于封神榜洪荒神话的 Claude Code 智能开发协作插件">
+    <title>圣人工作流 V2.0 - Saints Workflow</title>
+    <meta name="description" content="基于封神榜洪荒神话的 Claude Code 智能开发协作插件 - 阐截对抗开发体系">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☯</text></svg>">
     <style>
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
-            --secondary: #f97316;
+            --chan-color: #3b82f6;
+            --jie-color: #ef4444;
             --bg-dark: #0f0f1a;
             --bg-card: rgba(30, 30, 50, 0.8);
             --text: #e5e5e5;
@@ -33,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -42,8 +42,8 @@
             height: 100%;
             z-index: -1;
             background:
-                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
         }
 
@@ -58,8 +58,7 @@
                 radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
                 radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
                 radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.3), transparent);
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.2), transparent);
             background-repeat: repeat;
             background-size: 200px 200px;
             animation: twinkle 5s ease-in-out infinite;
@@ -70,7 +69,6 @@
             50% { opacity: 1; }
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -89,10 +87,19 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--chan-color), var(--jie-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, var(--chan-color), var(--jie-color));
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
 
         .nav-links {
@@ -132,7 +139,6 @@
             color: white;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -158,7 +164,7 @@
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            background: linear-gradient(135deg, #fff 0%, var(--chan-color) 50%, var(--jie-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -175,6 +181,31 @@
             color: var(--text-muted);
             margin-bottom: 3rem;
             max-width: 600px;
+        }
+
+        .vs-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            margin-bottom: 2rem;
+        }
+
+        .vs-badge .chan {
+            color: var(--chan-color);
+            font-weight: 600;
+        }
+
+        .vs-badge .vs {
+            color: var(--text-muted);
+        }
+
+        .vs-badge .jie {
+            color: var(--jie-color);
+            font-weight: 600;
         }
 
         .cta-buttons {
@@ -217,7 +248,6 @@
             border-color: var(--primary);
         }
 
-        /* Section */
         section {
             padding: 6rem 2rem;
             max-width: 1200px;
@@ -243,10 +273,9 @@
             margin-right: auto;
         }
 
-        /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -280,74 +309,191 @@
             font-size: 0.95rem;
         }
 
-        /* Saints Hierarchy */
-        .saints-tree {
+        /* Organization Chart */
+        .org-chart {
             text-align: center;
             padding: 2rem;
         }
 
-        .saint-level {
+        .org-level {
             display: flex;
             justify-content: center;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
-        .saint-card {
+        .org-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem 2rem;
-            min-width: 150px;
+            padding: 1rem 1.5rem;
+            min-width: 140px;
             transition: all 0.3s;
         }
 
-        .saint-card:hover {
-            border-color: var(--primary);
+        .org-card:hover {
+            transform: translateY(-3px);
             box-shadow: 0 5px 20px var(--glow);
         }
 
-        .saint-card.opus {
-            border-color: var(--secondary);
+        .org-card.chan {
+            border-color: var(--chan-color);
         }
 
-        .saint-card.opus:hover {
-            box-shadow: 0 5px 20px rgba(249, 115, 22, 0.3);
+        .org-card.jie {
+            border-color: var(--jie-color);
         }
 
-        .saint-name {
-            font-size: 1.1rem;
+        .org-card.tiandao {
+            border-color: #fbbf24;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), transparent);
+        }
+
+        .org-card.xifang {
+            border-color: #a855f7;
+        }
+
+        .org-name {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
-        .saint-role {
-            font-size: 0.85rem;
+        .org-role {
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        .saint-model {
+        .org-model {
             display: inline-block;
             margin-top: 0.5rem;
-            padding: 0.25rem 0.75rem;
+            padding: 0.15rem 0.5rem;
             background: rgba(99, 102, 241, 0.2);
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--primary);
         }
 
-        .saint-card.opus .saint-model {
+        .org-card.opus .org-model {
             background: rgba(249, 115, 22, 0.2);
-            color: var(--secondary);
+            color: #f97316;
         }
 
         .tree-line {
             width: 2px;
-            height: 40px;
+            height: 30px;
             background: linear-gradient(to bottom, var(--primary), transparent);
             margin: 0 auto;
+        }
+
+        .tree-line-h {
+            width: 60%;
+            height: 2px;
+            background: var(--border);
+            margin: 0 auto 1rem;
+        }
+
+        .group-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Jinxian Grid */
+        .jinxian-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .jinxian-card {
+            background: var(--bg-card);
+            border: 1px solid var(--chan-color);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .jinxian-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .jinxian-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .jinxian-specialty {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Battle Section */
+        .battle-section {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .battle-side {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .battle-side.chan {
+            border: 2px solid var(--chan-color);
+        }
+
+        .battle-side.jie {
+            border: 2px solid var(--jie-color);
+        }
+
+        .battle-side h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .battle-side.chan h3 {
+            color: var(--chan-color);
+        }
+
+        .battle-side.jie h3 {
+            color: var(--jie-color);
+        }
+
+        .battle-vs {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--chan-color), var(--jie-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .battle-list {
+            list-style: none;
+        }
+
+        .battle-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .battle-list li:last-child {
+            border-bottom: none;
         }
 
         /* Workflow Steps */
@@ -355,7 +501,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-top: 2rem;
         }
 
@@ -366,8 +512,8 @@
         }
 
         .step-num {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
@@ -375,10 +521,12 @@
             align-items: center;
             justify-content: center;
             font-weight: 600;
+            font-size: 0.85rem;
         }
 
         .step-text {
             color: var(--text);
+            font-size: 0.9rem;
         }
 
         .step-arrow {
@@ -416,82 +564,35 @@
             color: #a5d6ff;
         }
 
-        /* Installation Steps */
-        .install-steps {
-            counter-reset: step;
-        }
-
-        .install-step {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 4rem;
-        }
-
-        .install-step::before {
-            counter-increment: step;
-            content: counter(step);
-            position: absolute;
-            left: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 28px;
-            height: 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .install-step h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .install-step code {
-            display: block;
-            background: #1a1a2e;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 0.75rem;
-            font-size: 0.85rem;
-            overflow-x: auto;
-        }
-
         /* Commands Table */
-        .commands-table {
-            width: 100%;
-            border-collapse: collapse;
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
             margin-top: 2rem;
         }
 
-        .commands-table th,
-        .commands-table td {
+        .command-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .commands-table th {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-        }
-
-        .commands-table code {
+        .command-card code {
             background: #1a1a2e;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
 
-        .commands-table tr:hover {
-            background: rgba(99, 102, 241, 0.05);
+        .command-card .desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         /* Footer */
@@ -521,9 +622,13 @@
                 display: none;
             }
 
-            .saint-card {
-                min-width: 120px;
-                padding: 1rem;
+            .battle-section {
+                grid-template-columns: 1fr;
+            }
+
+            .battle-vs {
+                transform: rotate(90deg);
+                margin: 1rem auto;
             }
 
             .workflow-steps {
@@ -542,12 +647,12 @@
     <div class="stars"></div>
 
     <nav>
-        <div class="logo">☯ 圣人工作流</div>
+        <div class="logo">☯ 圣人工作流 <span class="version-badge">V2.0</span></div>
         <ul class="nav-links">
             <li><a href="#features" data-i18n="nav.features">特性</a></li>
-            <li><a href="#saints" data-i18n="nav.saints">圣人体系</a></li>
+            <li><a href="#architecture" data-i18n="nav.architecture">组织架构</a></li>
+            <li><a href="#battle" data-i18n="nav.battle">阐截对抗</a></li>
             <li><a href="#workflow" data-i18n="nav.workflow">工作流程</a></li>
-            <li><a href="#install" data-i18n="nav.install">安装</a></li>
             <li><a href="#commands" data-i18n="nav.commands">命令</a></li>
         </ul>
         <div class="lang-switch">
@@ -560,10 +665,15 @@
     <section class="hero">
         <div class="hero-icon">☯</div>
         <h1 data-i18n="hero.title">圣人工作流</h1>
-        <div class="subtitle" data-i18n="hero.subtitle">Saints Workflow</div>
+        <div class="subtitle" data-i18n="hero.subtitle">Saints Workflow V2.0</div>
+        <div class="vs-badge">
+            <span class="chan" data-i18n="hero.chan">阐教</span>
+            <span class="vs">VS</span>
+            <span class="jie" data-i18n="hero.jie">截教</span>
+        </div>
         <p class="tagline" data-i18n="hero.tagline">
             基于封神榜洪荒神话的 Claude Code 智能开发协作插件。<br>
-            道生一，一生二，二生三，三生万物。
+            阐截对抗，王对王，将对将，双重审查，天道闭环。
         </p>
         <div class="cta-buttons">
             <a href="https://github.com/asdshuaishuai/saints-workflow" class="btn btn-primary" data-i18n="hero.btn.github">
@@ -576,141 +686,289 @@
     </section>
 
     <section id="features">
-        <h2 class="section-title" data-i18n="features.title">核心特性</h2>
+        <h2 class="section-title" data-i18n="features.title">V2.0 核心特性</h2>
         <p class="section-desc" data-i18n="features.desc">
-            融合中国神话与现代 AI，打造独特的开发协作体验
+            阐截对抗开发体系，全新组织架构
         </p>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 data-i18n="features.f1.title">天道定时监管</h3>
-                <p data-i18n="features.f1.desc">每三分钟自动降临，检测懈怠、轮回、迷途，强制干预引导正向。</p>
+                <div class="feature-icon">⚔️</div>
+                <h3 data-i18n="features.f1.title">阐截对抗</h3>
+                <p data-i18n="features.f1.desc">元始天尊 vs 通天教主，王对王，将对将的对抗性开发模式。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 data-i18n="features.f2.title">动态模型分配</h3>
-                <p data-i18n="features.f2.desc">依任务复杂度自动选择 opus/sonnet/haiku 模型，优化性能与成本。</p>
+                <div class="feature-icon">👥</div>
+                <h3 data-i18n="features.f2.title">十二金仙</h3>
+                <p data-i18n="features.f2.desc">阐教十二金仙各司其职：后端、算法、安全、缓存、消息队列...</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 data-i18n="features.f3.title">西方双审</h3>
+                <p data-i18n="features.f3.desc">准提道人（代码审查）+ 接引道人（业务审查）双重保障。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔄</div>
-                <h3 data-i18n="features.f3.title">并行任务识别</h3>
-                <p data-i18n="features.f3.desc">L3 复杂任务自动识别可并行执行的部分，协调多个 Agent 并行工作。</p>
+                <h3 data-i18n="features.f4.title">测试修复闭环</h3>
+                <p data-i18n="features.f4.desc">伏羲（漏洞探查）+ 女娲（补天修复）完整测试修复闭环。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3 data-i18n="features.f4.title">智能流程简化</h3>
-                <p data-i18n="features.f4.desc">简单任务自动跳过不必要的阶段，L1 任务直接进入开发。</p>
+                <div class="feature-icon">☯</div>
+                <h3 data-i18n="features.f5.title">天道闭环</h3>
+                <p data-i18n="features.f5.desc">天道统筹全局，最终反馈天道，重新划分计划。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3 data-i18n="features.f5.title">多语言支持</h3>
-                <p data-i18n="features.f5.desc">支持 Python、JavaScript、Go、Rust 等 10+ 编程语言，WebSearch 动态学习新语言。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📜</div>
-                <h3 data-i18n="features.f6.title">洪荒韵味对话</h3>
-                <p data-i18n="features.f6.desc">诸圣对话尽皆文言，封神榜洪荒神话风格，开发亦是一种修行。</p>
+                <div class="feature-icon">⚡</div>
+                <h3 data-i18n="features.f6.title">定时监管</h3>
+                <p data-i18n="features.f6.desc">天道每两分钟自动检查进度，发现停滞、迷茫、循环及时干预。</p>
             </div>
         </div>
     </section>
 
-    <section id="saints">
-        <h2 class="section-title" data-i18n="saints.title">圣人体系</h2>
-        <p class="section-desc" data-i18n="saints.desc">
-            基于封神榜设定，八位圣人各司其职
+    <section id="architecture">
+        <h2 class="section-title" data-i18n="arch.title">组织架构</h2>
+        <p class="section-desc" data-i18n="arch.desc">
+            基于封神榜设定，全新组织架构
         </p>
-        <div class="saints-tree">
-            <div class="saint-level">
-                <div class="saint-card opus">
-                    <div class="saint-name" data-i18n="saints.taiqing.name">太清天尊</div>
-                    <div class="saint-role" data-i18n="saints.taiqing.role">主控协调</div>
-                    <span class="saint-model">opus</span>
+        <div class="org-chart">
+            <!-- 天道 -->
+            <div class="org-level">
+                <div class="org-card tiandao opus">
+                    <div class="org-name" data-i18n="arch.tiandao">天道</div>
+                    <div class="org-role" data-i18n="arch.tiandao.role">统筹全局 + 定时监管</div>
+                    <span class="org-model">sonnet</span>
                 </div>
             </div>
             <div class="tree-line"></div>
-            <div class="saint-level">
-                <div class="saint-card">
-                    <div class="saint-name" data-i18n="saints.taig.name">太极图</div>
-                    <div class="saint-role" data-i18n="saints.taig.role">需求原子化</div>
-                    <span class="saint-model">haiku</span>
+
+            <!-- 需求分析组 -->
+            <div class="group-label" data-i18n="arch.req">需求分析组</div>
+            <div class="org-level">
+                <div class="org-card opus">
+                    <div class="org-name" data-i18n="arch.taishang">太上老君</div>
+                    <div class="org-role" data-i18n="arch.taishang.role">需求总控</div>
+                    <span class="org-model">opus</span>
                 </div>
-                <div class="saint-card">
-                    <div class="saint-name" data-i18n="saints.fuxi.name">伏羲氏</div>
-                    <div class="saint-role" data-i18n="saints.fuxi.role">方案增强</div>
-                    <span class="saint-model">sonnet</span>
-                </div>
-            </div>
-            <div class="tree-line"></div>
-            <div class="saint-level">
-                <div class="saint-card opus">
-                    <div class="saint-name" data-i18n="saints.tongtian.name">通天教主</div>
-                    <div class="saint-role" data-i18n="saints.tongtian.role">架构设计</div>
-                    <span class="saint-model">opus</span>
-                </div>
-                <div class="saint-card">
-                    <div class="saint-name" data-i18n="saints.yuanshi.name">元始天尊</div>
-                    <div class="saint-role" data-i18n="saints.yuanshi.role">功能开发</div>
-                    <span class="saint-model">sonnet</span>
+                <div class="org-card">
+                    <div class="org-name" data-i18n="arch.taig">太极图</div>
+                    <div class="org-role" data-i18n="arch.taig.role">需求原子化</div>
+                    <span class="org-model">haiku</span>
                 </div>
             </div>
             <div class="tree-line"></div>
-            <div class="saint-level">
-                <div class="saint-card">
-                    <div class="saint-name" data-i18n="saints.nuwa.name">女娲娘娘</div>
-                    <div class="saint-role" data-i18n="saints.nuwa.role">测试验证</div>
-                    <span class="saint-model">haiku</span>
+            <div class="tree-line-h"></div>
+
+            <!-- 开发执行层 -->
+            <div class="org-level" style="gap: 4rem;">
+                <!-- 阐教 -->
+                <div>
+                    <div class="group-label" style="color: var(--chan-color);" data-i18n="arch.chan">阐教（正面开发）</div>
+                    <div class="org-level">
+                        <div class="org-card chan">
+                            <div class="org-name" data-i18n="arch.yuanshi">元始天尊</div>
+                            <div class="org-role" data-i18n="arch.yuanshi.role">阐教掌教</div>
+                            <span class="org-model">sonnet</span>
+                        </div>
+                    </div>
+                    <div class="jinxian-grid">
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">广成子</div>
+                            <div class="jinxian-specialty">金仙之首</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">赤精子</div>
+                            <div class="jinxian-specialty">后端服务</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">玉鼎真人</div>
+                            <div class="jinxian-specialty">算法逻辑</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">太乙真人</div>
+                            <div class="jinxian-specialty">安全认证</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">黄龙真人</div>
+                            <div class="jinxian-specialty">日志监控</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">文殊</div>
+                            <div class="jinxian-specialty">缓存性能</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">惧留孙</div>
+                            <div class="jinxian-specialty">消息队列</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">普贤</div>
+                            <div class="jinxian-specialty">分布式</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">慈航</div>
+                            <div class="jinxian-specialty">API网关</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">道行天尊</div>
+                            <div class="jinxian-specialty">配置管理</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">清虚</div>
+                            <div class="jinxian-specialty">定时任务</div>
+                        </div>
+                        <div class="jinxian-card">
+                            <div class="jinxian-name">灵宝</div>
+                            <div class="jinxian-specialty">文档规范</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 截教 -->
+                <div>
+                    <div class="group-label" style="color: var(--jie-color);" data-i18n="arch.jie">截教（对抗开发）</div>
+                    <div class="org-level">
+                        <div class="org-card jie opus">
+                            <div class="org-name" data-i18n="arch.tongtian">通天教主</div>
+                            <div class="org-role" data-i18n="arch.tongtian.role">截教掌教</div>
+                            <span class="org-model">opus</span>
+                        </div>
+                    </div>
+                    <div class="jinxian-grid">
+                        <div class="jinxian-card" style="border-color: var(--jie-color);">
+                            <div class="jinxian-name">云霄娘娘</div>
+                            <div class="jinxian-specialty">接口设计</div>
+                        </div>
+                        <div class="jinxian-card" style="border-color: var(--jie-color);">
+                            <div class="jinxian-name">琼霄娘娘</div>
+                            <div class="jinxian-specialty">业务逻辑</div>
+                        </div>
+                        <div class="jinxian-card" style="border-color: var(--jie-color);">
+                            <div class="jinxian-name">碧霄娘娘</div>
+                            <div class="jinxian-specialty">前端实现</div>
+                        </div>
+                        <div class="jinxian-card" style="border-color: var(--jie-color);">
+                            <div class="jinxian-name">赵公明</div>
+                            <div class="jinxian-specialty">数据存储</div>
+                        </div>
+                        <div class="jinxian-card" style="border-color: var(--jie-color);">
+                            <div class="jinxian-name">多宝道人</div>
+                            <div class="jinxian-specialty">核心架构</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="tree-line"></div>
-            <div class="saint-level">
-                <div class="saint-card opus">
-                    <div class="saint-name" data-i18n="saints.zhunti.name">准提道人</div>
-                    <div class="saint-role" data-i18n="saints.zhunti.role">代码审查</div>
-                    <span class="saint-model">opus</span>
+
+            <!-- 测试审查组 -->
+            <div class="org-level" style="gap: 4rem;">
+                <div>
+                    <div class="group-label" data-i18n="arch.test">测试修复组</div>
+                    <div class="org-level">
+                        <div class="org-card">
+                            <div class="org-name" data-i18n="arch.fuxi">伏羲氏</div>
+                            <div class="org-role" data-i18n="arch.fuxi.role">漏洞探查</div>
+                            <span class="org-model">sonnet</span>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-name" data-i18n="arch.nuwa">女娲娘娘</div>
+                            <div class="org-role" data-i18n="arch.nuwa.role">补天修复</div>
+                            <span class="org-model">haiku</span>
+                        </div>
+                    </div>
                 </div>
+                <div>
+                    <div class="group-label" style="color: #a855f7;" data-i18n="arch.review">审查组（西方教）</div>
+                    <div class="org-level">
+                        <div class="org-card xifang opus">
+                            <div class="org-name" data-i18n="arch.zhunti">准提道人</div>
+                            <div class="org-role" data-i18n="arch.zhunti.role">代码审查</div>
+                            <span class="org-model">opus</span>
+                        </div>
+                        <div class="org-card xifang opus">
+                            <div class="org-name" data-i18n="arch.jieyin">接引道人</div>
+                            <div class="org-role" data-i18n="arch.jieyin.role">业务审查</div>
+                            <span class="org-model">opus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="battle">
+        <h2 class="section-title" data-i18n="battle.title">阐截对抗</h2>
+        <p class="section-desc" data-i18n="battle.desc">
+            王对王，将对将，对抗性开发
+        </p>
+        <div class="battle-section">
+            <div class="battle-side chan">
+                <h3 data-i18n="battle.chan">阐教</h3>
+                <ul class="battle-list">
+                    <li><span>元始天尊</span><span>掌教</span></li>
+                    <li><span>玉鼎/普贤</span><span>核心架构</span></li>
+                    <li><span>赤精子/惧留孙</span><span>数据层</span></li>
+                    <li><span>太乙/慈航</span><span>接口层</span></li>
+                    <li><span>黄龙/道行</span><span>业务层</span></li>
+                    <li><span>文殊/清虚</span><span>性能/任务</span></li>
+                </ul>
+            </div>
+            <div class="battle-vs">VS</div>
+            <div class="battle-side jie">
+                <h3 data-i18n="battle.jie">截教</h3>
+                <ul class="battle-list">
+                    <li><span>通天教主</span><span>掌教</span></li>
+                    <li><span>多宝道人</span><span>核心架构</span></li>
+                    <li><span>赵公明</span><span>数据存储</span></li>
+                    <li><span>云霄娘娘</span><span>接口设计</span></li>
+                    <li><span>琼霄娘娘</span><span>业务逻辑</span></li>
+                    <li><span>碧霄娘娘</span><span>前端实现</span></li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="workflow">
-        <h2 class="section-title" data-i18n="workflow.title">工作流程</h2>
+        <h2 class="section-title" data-i18n="workflow.title">流程法阵</h2>
         <p class="section-desc" data-i18n="workflow.desc">
-            七阶段开发流程，从规划到交付
+            八阶段开发流程，从需求到天道闭环
         </p>
         <div class="workflow-steps">
             <div class="step">
                 <span class="step-num">1</span>
-                <span class="step-text" data-i18n="workflow.s1">规划</span>
+                <span class="step-text" data-i18n="workflow.s1">太上老君·需求</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">2</span>
-                <span class="step-text" data-i18n="workflow.s2">拆分增强</span>
+                <span class="step-text" data-i18n="workflow.s2">太极·原子化</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">3</span>
-                <span class="step-text" data-i18n="workflow.s3">开发</span>
+                <span class="step-text" data-i18n="workflow.s3">阐截对抗</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">4</span>
-                <span class="step-text" data-i18n="workflow.s4">测试</span>
+                <span class="step-text" data-i18n="workflow.s4">伏羲·探查</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">5</span>
-                <span class="step-text" data-i18n="workflow.s5">审查</span>
+                <span class="step-text" data-i18n="workflow.s5">女娲·修复</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">6</span>
-                <span class="step-text" data-i18n="workflow.s6">确认</span>
+                <span class="step-text" data-i18n="workflow.s6">西方双审</span>
             </div>
             <span class="step-arrow">→</span>
             <div class="step">
                 <span class="step-num">7</span>
-                <span class="step-text" data-i18n="workflow.s7">增强修复</span>
+                <span class="step-text" data-i18n="workflow.s7">天命确认</span>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <span class="step-num">8</span>
+                <span class="step-text" data-i18n="workflow.s8">天道闭环</span>
             </div>
         </div>
 
@@ -719,32 +977,12 @@
             <div class="code-block">
                 <span class="comment"># 启动完整工作流</span><br>
                 <span class="command">/saints-workflow:saints</span> <span class="string">实现用户登录功能</span><br><br>
-                <span class="comment"># 或使用洪荒风格</span><br>
-                <span class="command">/saints-workflow:saints</span> <span class="string">炼制登录法宝</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="install">
-        <h2 class="section-title" data-i18n="install.title">安装指南</h2>
-        <p class="section-desc" data-i18n="install.desc">
-            三步完成本地安装
-        </p>
-        <div class="install-steps">
-            <div class="install-step">
-                <h4 data-i18n="install.s1.title">克隆插件到本地缓存</h4>
-                <code>git clone https://github.com/asdshuaishuai/saints-workflow.git \
-~/.claude/plugins/cache/local/saints-workflow/1.2.0</code>
-            </div>
-            <div class="install-step">
-                <h4 data-i18n="install.s2.title">注册插件</h4>
-                <code>编辑 ~/.claude/plugins/installed_plugins.json 添加配置<br>
-详见 README.md</code>
-            </div>
-            <div class="install-step">
-                <h4 data-i18n="install.s3.title">启用并重启</h4>
-                <code>编辑 ~/.claude/settings.json 添加到 enabledPlugins<br>
-然后运行 claude 重启</code>
+                <span class="comment"># 阐教开发</span><br>
+                <span class="command">/saints-workflow:yuanshi</span> <span class="string">正面开发</span><br>
+                <span class="command">/saints-workflow:guangchengzi</span> <span class="string">规范开发</span><br><br>
+                <span class="comment"># 截教对抗</span><br>
+                <span class="command">/saints-workflow:tongtian</span> <span class="string">对抗开发</span><br>
+                <span class="command">/saints-workflow:yunxiao</span> <span class="string">接口设计</span>
             </div>
         </div>
     </section>
@@ -754,52 +992,72 @@
         <p class="section-desc" data-i18n="commands.desc">
             所有可用的 Slash 命令
         </p>
-        <table class="commands-table">
-            <thead>
-                <tr>
-                    <th data-i18n="commands.table.cmd">命令</th>
-                    <th data-i18n="commands.table.func">功能</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>/saints-workflow:saints</code></td>
-                    <td data-i18n="commands.c.saints">完整工作流</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:taiqing</code></td>
-                    <td data-i18n="commands.c.taiqing">仅规划</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:taig</code></td>
-                    <td data-i18n="commands.c.taig">原子化拆分</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:fuxi</code></td>
-                    <td data-i18n="commands.c.fuxi">方案增强</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:yuanshi</code></td>
-                    <td data-i18n="commands.c.yuanshi">功能开发</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:lingbao</code></td>
-                    <td data-i18n="commands.c.lingbao">架构设计</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:nva</code></td>
-                    <td data-i18n="commands.c.nva">测试验证</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:puti</code></td>
-                    <td data-i18n="commands.c.puti">代码审查</td>
-                </tr>
-                <tr>
-                    <td><code>/saints-workflow:tiandao</code></td>
-                    <td data-i18n="commands.c.tiandao">天道降临</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="commands-grid">
+            <div class="command-card">
+                <code>/saints</code>
+                <span class="desc" data-i18n="cmd.saints">完整工作流</span>
+            </div>
+            <div class="command-card">
+                <code>/taishang</code>
+                <span class="desc" data-i18n="cmd.taishang">需求分析</span>
+            </div>
+            <div class="command-card">
+                <code>/taig</code>
+                <span class="desc" data-i18n="cmd.taig">需求原子化</span>
+            </div>
+            <div class="command-card">
+                <code>/yuanshi</code>
+                <span class="desc" data-i18n="cmd.yuanshi">阐教掌教</span>
+            </div>
+            <div class="command-card">
+                <code>/guangchengzi</code>
+                <span class="desc" data-i18n="cmd.guangchengzi">金仙之首</span>
+            </div>
+            <div class="command-card">
+                <code>/tongtian</code>
+                <span class="desc" data-i18n="cmd.tongtian">截教掌教</span>
+            </div>
+            <div class="command-card">
+                <code>/yunxiao</code>
+                <span class="desc" data-i18n="cmd.yunxiao">接口设计</span>
+            </div>
+            <div class="command-card">
+                <code>/qiongxiao</code>
+                <span class="desc" data-i18n="cmd.qiongxiao">业务逻辑</span>
+            </div>
+            <div class="command-card">
+                <code>/bixiao</code>
+                <span class="desc" data-i18n="cmd.bixiao">前端实现</span>
+            </div>
+            <div class="command-card">
+                <code>/zhaogongming</code>
+                <span class="desc" data-i18n="cmd.zhaogongming">数据存储</span>
+            </div>
+            <div class="command-card">
+                <code>/duobao</code>
+                <span class="desc" data-i18n="cmd.duobao">核心架构</span>
+            </div>
+            <div class="command-card">
+                <code>/fuxi</code>
+                <span class="desc" data-i18n="cmd.fuxi">漏洞探查</span>
+            </div>
+            <div class="command-card">
+                <code>/nva</code>
+                <span class="desc" data-i18n="cmd.nva">补天修复</span>
+            </div>
+            <div class="command-card">
+                <code>/puti</code>
+                <span class="desc" data-i18n="cmd.puti">代码审查</span>
+            </div>
+            <div class="command-card">
+                <code>/jieyin</code>
+                <span class="desc" data-i18n="cmd.jieyin">业务审查</span>
+            </div>
+            <div class="command-card">
+                <code>/tiandao</code>
+                <span class="desc" data-i18n="cmd.tiandao">天道降临</span>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -815,217 +1073,265 @@
         const i18n = {
             zh: {
                 'nav.features': '特性',
-                'nav.saints': '圣人体系',
+                'nav.architecture': '组织架构',
+                'nav.battle': '阐截对抗',
                 'nav.workflow': '工作流程',
-                'nav.install': '安装',
                 'nav.commands': '命令',
                 'hero.title': '圣人工作流',
-                'hero.subtitle': 'Saints Workflow',
-                'hero.tagline': '基于封神榜洪荒神话的 Claude Code 智能开发协作插件。<br>道生一，一生二，二生三，三生万物。',
+                'hero.subtitle': 'Saints Workflow V2.0',
+                'hero.chan': '阐教',
+                'hero.jie': '截教',
+                'hero.tagline': '基于封神榜洪荒神话的 Claude Code 智能开发协作插件。<br>阐截对抗，王对王，将对将，双重审查，天道闭环。',
                 'hero.btn.github': 'GitHub 仓库',
                 'hero.btn.gitee': 'Gitee 镜像',
-                'features.title': '核心特性',
-                'features.desc': '融合中国神话与现代 AI，打造独特的开发协作体验',
-                'features.f1.title': '天道定时监管',
-                'features.f1.desc': '每三分钟自动降临，检测懈怠、轮回、迷途，强制干预引导正向。',
-                'features.f2.title': '动态模型分配',
-                'features.f2.desc': '依任务复杂度自动选择 opus/sonnet/haiku 模型，优化性能与成本。',
-                'features.f3.title': '并行任务识别',
-                'features.f3.desc': 'L3 复杂任务自动识别可并行执行的部分，协调多个 Agent 并行工作。',
-                'features.f4.title': '智能流程简化',
-                'features.f4.desc': '简单任务自动跳过不必要的阶段，L1 任务直接进入开发。',
-                'features.f5.title': '多语言支持',
-                'features.f5.desc': '支持 Python、JavaScript、Go、Rust 等 10+ 编程语言，WebSearch 动态学习新语言。',
-                'features.f6.title': '洪荒韵味对话',
-                'features.f6.desc': '诸圣对话尽皆文言，封神榜洪荒神话风格，开发亦是一种修行。',
-                'saints.title': '圣人体系',
-                'saints.desc': '基于封神榜设定，八位圣人各司其职',
-                'saints.taiqing.name': '太清天尊',
-                'saints.taiqing.role': '主控协调',
-                'saints.taig.name': '太极图',
-                'saints.taig.role': '需求原子化',
-                'saints.fuxi.name': '伏羲氏',
-                'saints.fuxi.role': '方案增强',
-                'saints.tongtian.name': '通天教主',
-                'saints.tongtian.role': '架构设计',
-                'saints.yuanshi.name': '元始天尊',
-                'saints.yuanshi.role': '功能开发',
-                'saints.nuwa.name': '女娲娘娘',
-                'saints.nuwa.role': '测试验证',
-                'saints.zhunti.name': '准提道人',
-                'saints.zhunti.role': '代码审查',
-                'workflow.title': '工作流程',
-                'workflow.desc': '七阶段开发流程，从规划到交付',
-                'workflow.s1': '规划',
-                'workflow.s2': '拆分增强',
-                'workflow.s3': '开发',
-                'workflow.s4': '测试',
-                'workflow.s5': '审查',
-                'workflow.s6': '确认',
-                'workflow.s7': '增强修复',
+                'features.title': 'V2.0 核心特性',
+                'features.desc': '阐截对抗开发体系，全新组织架构',
+                'features.f1.title': '阐截对抗',
+                'features.f1.desc': '元始天尊 vs 通天教主，王对王，将对将的对抗性开发模式。',
+                'features.f2.title': '十二金仙',
+                'features.f2.desc': '阐教十二金仙各司其职：后端、算法、安全、缓存、消息队列...',
+                'features.f3.title': '西方双审',
+                'features.f3.desc': '准提道人（代码审查）+ 接引道人（业务审查）双重保障。',
+                'features.f4.title': '测试修复闭环',
+                'features.f4.desc': '伏羲（漏洞探查）+ 女娲（补天修复）完整测试修复闭环。',
+                'features.f5.title': '天道闭环',
+                'features.f5.desc': '天道统筹全局，最终反馈天道，重新划分计划。',
+                'features.f6.title': '定时监管',
+                'features.f6.desc': '天道每两分钟自动检查进度，发现停滞、迷茫、循环及时干预。',
+                'arch.title': '组织架构',
+                'arch.desc': '基于封神榜设定，全新组织架构',
+                'arch.tiandao': '天道',
+                'arch.tiandao.role': '统筹全局 + 定时监管',
+                'arch.req': '需求分析组',
+                'arch.taishang': '太上老君',
+                'arch.taishang.role': '需求总控',
+                'arch.taig': '太极图',
+                'arch.taig.role': '需求原子化',
+                'arch.chan': '阐教（正面开发）',
+                'arch.jie': '截教（对抗开发）',
+                'arch.yuanshi': '元始天尊',
+                'arch.yuanshi.role': '阐教掌教',
+                'arch.tongtian': '通天教主',
+                'arch.tongtian.role': '截教掌教',
+                'arch.test': '测试修复组',
+                'arch.review': '审查组（西方教）',
+                'arch.fuxi': '伏羲氏',
+                'arch.fuxi.role': '漏洞探查',
+                'arch.nuwa': '女娲娘娘',
+                'arch.nuwa.role': '补天修复',
+                'arch.zhunti': '准提道人',
+                'arch.zhunti.role': '代码审查',
+                'arch.jieyin': '接引道人',
+                'arch.jieyin.role': '业务审查',
+                'battle.title': '阐截对抗',
+                'battle.desc': '王对王，将对将，对抗性开发',
+                'battle.chan': '阐教',
+                'battle.jie': '截教',
+                'workflow.title': '流程法阵',
+                'workflow.desc': '八阶段开发流程，从需求到天道闭环',
+                'workflow.s1': '太上老君·需求',
+                'workflow.s2': '太极·原子化',
+                'workflow.s3': '阐截对抗',
+                'workflow.s4': '伏羲·探查',
+                'workflow.s5': '女娲·修复',
+                'workflow.s6': '西方双审',
+                'workflow.s7': '天命确认',
+                'workflow.s8': '天道闭环',
                 'workflow.example.title': '快速示例',
-                'install.title': '安装指南',
-                'install.desc': '三步完成本地安装',
-                'install.s1.title': '克隆插件到本地缓存',
-                'install.s2.title': '注册插件',
-                'install.s3.title': '启用并重启',
                 'commands.title': '命令一览',
                 'commands.desc': '所有可用的 Slash 命令',
-                'commands.table.cmd': '命令',
-                'commands.table.func': '功能',
-                'commands.c.saints': '完整工作流',
-                'commands.c.taiqing': '仅规划',
-                'commands.c.taig': '原子化拆分',
-                'commands.c.fuxi': '方案增强',
-                'commands.c.yuanshi': '功能开发',
-                'commands.c.lingbao': '架构设计',
-                'commands.c.nva': '测试验证',
-                'commands.c.puti': '代码审查',
-                'commands.c.tiandao': '天道降临',
+                'cmd.saints': '完整工作流',
+                'cmd.taishang': '需求分析',
+                'cmd.taig': '需求原子化',
+                'cmd.yuanshi': '阐教掌教',
+                'cmd.guangchengzi': '金仙之首',
+                'cmd.tongtian': '截教掌教',
+                'cmd.yunxiao': '接口设计',
+                'cmd.qiongxiao': '业务逻辑',
+                'cmd.bixiao': '前端实现',
+                'cmd.zhaogongming': '数据存储',
+                'cmd.duobao': '核心架构',
+                'cmd.fuxi': '漏洞探查',
+                'cmd.nva': '补天修复',
+                'cmd.puti': '代码审查',
+                'cmd.jieyin': '业务审查',
+                'cmd.tiandao': '天道降临',
                 'footer.license': 'MIT License',
                 'footer.quote': '道生一，一生二，二生三，三生万物。'
             },
             en: {
                 'nav.features': 'Features',
-                'nav.saints': 'Saints',
+                'nav.architecture': 'Architecture',
+                'nav.battle': 'Chan vs Jie',
                 'nav.workflow': 'Workflow',
-                'nav.install': 'Install',
                 'nav.commands': 'Commands',
                 'hero.title': 'Saints Workflow',
-                'hero.subtitle': 'Claude Code Plugin',
-                'hero.tagline': 'A Claude Code plugin based on Chinese mythology "Investiture of the Gods".<br>Intelligent development collaboration system.',
+                'hero.subtitle': 'Saints Workflow V2.0',
+                'hero.chan': 'Chan',
+                'hero.jie': 'Jie',
+                'hero.tagline': 'Claude Code plugin based on Chinese mythology.<br>Chan vs Jie battle, dual review, Heavenly Dao loop.',
                 'hero.btn.github': 'GitHub Repo',
                 'hero.btn.gitee': 'Gitee Mirror',
-                'features.title': 'Core Features',
-                'features.desc': 'Combining Chinese mythology with modern AI for a unique development experience',
-                'features.f1.title': 'Heavenly Dao Monitoring',
-                'features.f1.desc': 'Automatic intervention every 3 minutes to detect idleness, loops, and confusion.',
-                'features.f2.title': 'Dynamic Model Allocation',
-                'features.f2.desc': 'Automatically select opus/sonnet/haiku based on task complexity.',
-                'features.f3.title': 'Parallel Task Detection',
-                'features.f3.desc': 'L3 complex tasks automatically identify parallelizable parts.',
-                'features.f4.title': 'Smart Process Simplification',
-                'features.f4.desc': 'Simple tasks skip unnecessary phases automatically.',
-                'features.f5.title': 'Multi-language Support',
-                'features.f5.desc': 'Supports 10+ programming languages with WebSearch for dynamic learning.',
-                'features.f6.title': 'Mythological Dialogue',
-                'features.f6.desc': 'Conversations styled after Fengshen Bang mythology.',
-                'saints.title': 'Saints System',
-                'saints.desc': 'Eight saints from Fengshen Bang, each with their own role',
-                'saints.taiqing.name': 'Taiqing Sage',
-                'saints.taiqing.role': 'Coordination',
-                'saints.taig.name': 'Taiji Diagram',
-                'saints.taig.role': 'Atomic Breakdown',
-                'saints.fuxi.name': 'Fuxi',
-                'saints.fuxi.role': 'Enhancement',
-                'saints.tongtian.name': 'Tongtian',
-                'saints.tongtian.role': 'Architecture',
-                'saints.yuanshi.name': 'Yuanshi',
-                'saints.yuanshi.role': 'Development',
-                'saints.nuwa.name': 'Nuwa',
-                'saints.nuwa.role': 'Testing',
-                'saints.zhunti.name': 'Zhunti',
-                'saints.zhunti.role': 'Code Review',
+                'features.title': 'V2.0 Core Features',
+                'features.desc': 'Chan-Jie adversarial development system',
+                'features.f1.title': 'Chan vs Jie',
+                'features.f1.desc': 'Yuanshi vs Tongtian, king vs king, general vs general.',
+                'features.f2.title': '12 Golden Immortals',
+                'features.f2.desc': 'Each specializes: backend, algorithm, security, cache, message queue...',
+                'features.f3.title': 'Dual Review',
+                'features.f3.desc': 'Zhunti (code review) + Jieyin (business review).',
+                'features.f4.title': 'Test-Fix Loop',
+                'features.f4.desc': 'Fuxi (bug detection) + Nuwa (bug fix).',
+                'features.f5.title': 'Heavenly Dao Loop',
+                'features.f5.desc': 'Final feedback to Heavenly Dao for replanning.',
+                'features.f6.title': 'Monitoring',
+                'features.f6.desc': 'Checks every 2 minutes for stalls and loops.',
+                'arch.title': 'Organization',
+                'arch.desc': 'Based on Fengshen Bang, new architecture',
+                'arch.tiandao': 'Heavenly Dao',
+                'arch.tiandao.role': 'Coordination + Monitoring',
+                'arch.req': 'Requirements Analysis',
+                'arch.taishang': 'Taishang',
+                'arch.taishang.role': 'Requirements Lead',
+                'arch.taig': 'Taiji',
+                'arch.taig.role': 'Atomic Breakdown',
+                'arch.chan': 'Chan (Main Dev)',
+                'arch.jie': 'Jie (Adversarial)',
+                'arch.yuanshi': 'Yuanshi',
+                'arch.yuanshi.role': 'Chan Leader',
+                'arch.tongtian': 'Tongtian',
+                'arch.tongtian.role': 'Jie Leader',
+                'arch.test': 'Test & Fix',
+                'arch.review': 'Review (Western)',
+                'arch.fuxi': 'Fuxi',
+                'arch.fuxi.role': 'Bug Detection',
+                'arch.nuwa': 'Nuwa',
+                'arch.nuwa.role': 'Bug Fix',
+                'arch.zhunti': 'Zhunti',
+                'arch.zhunti.role': 'Code Review',
+                'arch.jieyin': 'Jieyin',
+                'arch.jieyin.role': 'Business Review',
+                'battle.title': 'Chan vs Jie',
+                'battle.desc': 'King vs king, general vs general',
+                'battle.chan': 'Chan',
+                'battle.jie': 'Jie',
                 'workflow.title': 'Workflow',
-                'workflow.desc': '7-phase development process from planning to delivery',
-                'workflow.s1': 'Planning',
+                'workflow.desc': '8-phase development process',
+                'workflow.s1': 'Requirements',
                 'workflow.s2': 'Breakdown',
-                'workflow.s3': 'Development',
-                'workflow.s4': 'Testing',
-                'workflow.s5': 'Review',
-                'workflow.s6': 'Confirm',
-                'workflow.s7': 'Enhance',
+                'workflow.s3': 'Chan vs Jie',
+                'workflow.s4': 'Detection',
+                'workflow.s5': 'Fix',
+                'workflow.s6': 'Dual Review',
+                'workflow.s7': 'Confirm',
+                'workflow.s8': 'Loop',
                 'workflow.example.title': 'Quick Example',
-                'install.title': 'Installation',
-                'install.desc': 'Three steps to install locally',
-                'install.s1.title': 'Clone to local cache',
-                'install.s2.title': 'Register plugin',
-                'install.s3.title': 'Enable and restart',
                 'commands.title': 'Commands',
                 'commands.desc': 'All available slash commands',
-                'commands.table.cmd': 'Command',
-                'commands.table.func': 'Function',
-                'commands.c.saints': 'Full workflow',
-                'commands.c.taiqing': 'Planning only',
-                'commands.c.taig': 'Atomic breakdown',
-                'commands.c.fuxi': 'Enhancement',
-                'commands.c.yuanshi': 'Development',
-                'commands.c.lingbao': 'Architecture',
-                'commands.c.nva': 'Testing',
-                'commands.c.puti': 'Code review',
-                'commands.c.tiandao': 'Heavenly Dao',
+                'cmd.saints': 'Full workflow',
+                'cmd.taishang': 'Requirements',
+                'cmd.taig': 'Breakdown',
+                'cmd.yuanshi': 'Chan Leader',
+                'cmd.guangchengzi': 'Golden Immortal',
+                'cmd.tongtian': 'Jie Leader',
+                'cmd.yunxiao': 'API Design',
+                'cmd.qiongxiao': 'Business Logic',
+                'cmd.bixiao': 'Frontend',
+                'cmd.zhaogongming': 'Data Storage',
+                'cmd.duobao': 'Core Architecture',
+                'cmd.fuxi': 'Bug Detection',
+                'cmd.nva': 'Bug Fix',
+                'cmd.puti': 'Code Review',
+                'cmd.jieyin': 'Business Review',
+                'cmd.tiandao': 'Heavenly Dao',
                 'footer.license': 'MIT License',
                 'footer.quote': 'The Dao produces One, One produces Two, Two produces Three, Three produces all things.'
             },
             ja: {
                 'nav.features': '機能',
-                'nav.saints': '聖人',
+                'nav.architecture': '組織',
+                'nav.battle': '闡 vs 截',
                 'nav.workflow': 'ワークフロー',
-                'nav.install': 'インストール',
                 'nav.commands': 'コマンド',
                 'hero.title': '聖人ワークフロー',
-                'hero.subtitle': 'Claude Code プラグイン',
-                'hero.tagline': '中国神話「封神演義」に基づくClaude Codeプラグイン。<br>インテリジェント開発協力システム。',
-                'hero.btn.github': 'GitHub リポ',
-                'hero.btn.gitee': 'Gitee ミラー',
-                'features.title': '主な機能',
-                'features.desc': '中国神話と現代AIを融合したユニークな開発体験',
-                'features.f1.title': '天道による監視',
-                'features.f1.desc': '3分ごとに自動介入し、怠惰やループ、混乱を検出。',
-                'features.f2.title': '動的モデル割り当て',
-                'features.f2.desc': 'タスク複雑度に応じてopus/sonnet/haikuを自動選択。',
-                'features.f3.title': '並列タスク検出',
-                'features.f3.desc': 'L3複雑タスクは並列実行可能な部分を自動識別。',
-                'features.f4.title': 'スマートプロセス簡素化',
-                'features.f4.desc': '単純なタスクは不要なフェーズを自動スキップ。',
-                'features.f5.title': '多言語サポート',
-                'features.f5.desc': '10以上のプログラミング言語をサポート。',
-                'features.f6.title': '神話的対話',
-                'features.f6.desc': '封神演義スタイルの会話。',
-                'saints.title': '聖人システム',
-                'saints.desc': '封神演義から8人の聖人、それぞれが役割を持つ',
-                'saints.taiqing.name': '太清天尊',
-                'saints.taiqing.role': '調整',
-                'saints.taig.name': '太極図',
-                'saints.taig.role': '原子分解',
-                'saints.fuxi.name': '伏羲',
-                'saints.fuxi.role': '強化',
-                'saints.tongtian.name': '通天教主',
-                'saints.tongtian.role': 'アーキテクチャ',
-                'saints.yuanshi.name': '元始天尊',
-                'saints.yuanshi.role': '開発',
-                'saints.nuwa.name': '女媧',
-                'saints.nuwa.role': 'テスト',
-                'saints.zhunti.name': '準提道人',
-                'saints.zhunti.role': 'レビュー',
+                'hero.subtitle': 'Saints Workflow V2.0',
+                'hero.chan': '闡教',
+                'hero.jie': '截教',
+                'hero.tagline': '封神演義に基づくClaude Codeプラグイン。<br>闡截対抗、王対王、将対将。',
+                'hero.btn.github': 'GitHub',
+                'hero.btn.gitee': 'Gitee',
+                'features.title': 'V2.0 主な機能',
+                'features.desc': '闡截対抗開発システム',
+                'features.f1.title': '闡截対抗',
+                'features.f1.desc': '元始天尊 vs 通天教主、王対王の対抗開発。',
+                'features.f2.title': '十二金仙',
+                'features.f2.desc': '各専門：バックエンド、アルゴリズム、セキュリティ...',
+                'features.f3.title': '二重審査',
+                'features.f3.desc': '準提（コード審査）+ 接引（ビジネス審査）。',
+                'features.f4.title': 'テスト修正ループ',
+                'features.f4.desc': '伏羲（バグ検出）+ 女媧（バグ修正）。',
+                'features.f5.title': '天道ループ',
+                'features.f5.desc': '最終的に天道にフィードバック。',
+                'features.f6.title': '監視',
+                'features.f6.desc': '2分ごとに進捗チェック。',
+                'arch.title': '組織構造',
+                'arch.desc': '封神演義ベースの新アーキテクチャ',
+                'arch.tiandao': '天道',
+                'arch.tiandao.role': '統括 + 監視',
+                'arch.req': '要件分析',
+                'arch.taishang': '太上老君',
+                'arch.taishang.role': '要件統括',
+                'arch.taig': '太極図',
+                'arch.taig.role': '原子化',
+                'arch.chan': '闡教（正面開発）',
+                'arch.jie': '截教（対抗開発）',
+                'arch.yuanshi': '元始天尊',
+                'arch.yuanshi.role': '闡教教主',
+                'arch.tongtian': '通天教主',
+                'arch.tongtian.role': '截教教主',
+                'arch.test': 'テスト修正',
+                'arch.review': '審査（西方教）',
+                'arch.fuxi': '伏羲',
+                'arch.fuxi.role': 'バグ検出',
+                'arch.nuwa': '女媧',
+                'arch.nuwa.role': 'バグ修正',
+                'arch.zhunti': '準提道人',
+                'arch.zhunti.role': 'コード審査',
+                'arch.jieyin': '接引道人',
+                'arch.jieyin.role': 'ビジネス審査',
+                'battle.title': '闡截対抗',
+                'battle.desc': '王対王、将対将',
+                'battle.chan': '闡教',
+                'battle.jie': '截教',
                 'workflow.title': 'ワークフロー',
-                'workflow.desc': '計画から納品まで7フェーズの開発プロセス',
-                'workflow.s1': '計画',
-                'workflow.s2': '分解',
-                'workflow.s3': '開発',
-                'workflow.s4': 'テスト',
-                'workflow.s5': 'レビュー',
-                'workflow.s6': '確認',
-                'workflow.s7': '強化',
+                'workflow.desc': '8フェーズ開発プロセス',
+                'workflow.s1': '要件',
+                'workflow.s2': '原子化',
+                'workflow.s3': '闡截対抗',
+                'workflow.s4': '検出',
+                'workflow.s5': '修正',
+                'workflow.s6': '二重審査',
+                'workflow.s7': '確認',
+                'workflow.s8': 'ループ',
                 'workflow.example.title': 'クイック例',
-                'install.title': 'インストール',
-                'install.desc': '3ステップでローカルインストール',
-                'install.s1.title': 'ローカルキャッシュにクローン',
-                'install.s2.title': 'プラグインを登録',
-                'install.s3.title': '有効化して再起動',
                 'commands.title': 'コマンド',
-                'commands.desc': '利用可能なすべてのスラッシュコマンド',
-                'commands.table.cmd': 'コマンド',
-                'commands.table.func': '機能',
-                'commands.c.saints': 'フルワークフロー',
-                'commands.c.taiqing': '計画のみ',
-                'commands.c.taig': '原子分解',
-                'commands.c.fuxi': '強化',
-                'commands.c.yuanshi': '開発',
-                'commands.c.lingbao': 'アーキテクチャ',
-                'commands.c.nva': 'テスト',
-                'commands.c.puti': 'レビュー',
-                'commands.c.tiandao': '天道降臨',
+                'commands.desc': '利用可能なコマンド',
+                'cmd.saints': 'フルワークフロー',
+                'cmd.taishang': '要件分析',
+                'cmd.taig': '原子化',
+                'cmd.yuanshi': '闡教教主',
+                'cmd.guangchengzi': '金仙',
+                'cmd.tongtian': '截教教主',
+                'cmd.yunxiao': 'API設計',
+                'cmd.qiongxiao': 'ビジネスロジック',
+                'cmd.bixiao': 'フロントエンド',
+                'cmd.zhaogongming': 'データストレージ',
+                'cmd.duobao': 'コアアーキテクチャ',
+                'cmd.fuxi': 'バグ検出',
+                'cmd.nva': 'バグ修正',
+                'cmd.puti': 'コード審査',
+                'cmd.jieyin': 'ビジネス審査',
+                'cmd.tiandao': '天道',
                 'footer.license': 'MIT License',
                 'footer.quote': '道は一を生じ、一は二を生じ、二は三を生じ、三は万物を生ず。'
             }
@@ -1045,7 +1351,6 @@
             });
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
