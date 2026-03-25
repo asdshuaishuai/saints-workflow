@@ -1,19 +1,38 @@
-# Saints Workflow
+# Saints Workflow (V3.1)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Languages**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
 
+> *Chaos begins, heaven and earth are dark. Primordial saints show their divine powers.*
+
 A Claude Code plugin based on Chinese mythology "Investiture of the Gods" (Fengshen Bang) - Intelligent Development Collaboration System
+
+---
+
+## V3.1 · Lingtai Fangcun (Current)
+
+- **Self-Reflection**: Introduced self-reflection mechanism to ensure output quality before delivery.
+- **Dynamic Routing**: Automatically match the most suitable saint based on task complexity.
+- **Context Enhancement**: Optimized long context management for precise causal tracking.
+- **Architecture Optimization**: Deeply adapted to Claude 3.5/4 features for better performance.
+
+## V3.0 · Great Primordial Era
+
+- **Great Formations**: 5 major formations (Liangyi, Wanxian, Zhuxian, etc.) for different stages.
+- **Innate Treasures**: Development tools transformed into powerful artifacts (Hunyuan Jindou, etc.).
+- **Investiture Lists**: Merit, Reincarnation, and Karma lists for comprehensive tracking.
+- **Four Saints Deliberation**: Collaborative decision-making for critical architectural choices.
+- **Heavenly Dao Judgment**: Final decision in case of deadlock.
 
 ---
 
 ## Overview
 
-Saints Workflow is a complete Claude Code plugin featuring a 7-phase development process:
+Saints Workflow is a complete Claude Code plugin featuring a multi-phase development process:
 
 ```
-[1] Planning → [2] Breakdown & Enhancement → [3] Development → [4] Testing → [5] Review → [6] Confirmation → [7] Enhancement & Fix
+[1] Planning → [2] Breakdown → [3] Development → [4] Testing → [5] Review → [6] Confirmation → [7] Enhancement
 ```
 
 ### Core Features
@@ -271,6 +290,21 @@ saints-workflow/
 ---
 
 ## Changelog
+
+### v3.1.0 · Lingtai Fangcun (2026-03-25)
+
+- **Self-Reflection**: Logic consistency checks before output to improve code and solution quality.
+- **Dynamic Routing**: Intelligent saint scheduling based on task intent recognition.
+- **Context Enhancement**: Optimized RAG and long context handling to ensure complex logic is preserved.
+- **Architecture Optimization**: Optimized Prompt strategies for professional development scenarios.
+
+### v3.0.0 · Great Primordial Era (2026-03-20)
+
+- **Great Formations**: 5 major formations rotating for different development stages.
+- **Innate Treasures**: Development tools transformed into powerful artifacts.
+- **Investiture Lists**: Merit, Reincarnation, and Karma lists for tracking.
+- **Four Saints Deliberation**: Collaborative decision-making for critical tasks.
+- **Heavenly Dao Judgment**: Final decision in case of deadlock.
 
 ### v1.2.1 (2026-03-19)
 
