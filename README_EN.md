@@ -4,307 +4,136 @@
 
 **Languages**: [中文](README.md) | [English](README_EN.md) | [日本語](README_JA.md)
 
-A Claude Code plugin based on Chinese mythology "Investiture of the Gods" (Fengshen Bang) - Intelligent Development Collaboration System
+> *In the beginning, chaos. In chaos lies infinite potential. Ten thousand saints show their divine powers.*
+
+A multi-role Claude Agent collaboration system based on Chinese mythology "Investiture of the Gods" (Fengshen Bang) — mapping software development stages to specialized divine roles working in harmony.
 
 ---
 
-## Overview
+## Project Highlights
 
-Saints Workflow is a complete Claude Code plugin featuring a 7-phase development process:
+A **creative multi-role Agent system** with distinctive features:
 
-```
-[1] Planning → [2] Breakdown & Enhancement → [3] Development → [4] Testing → [5] Review → [6] Confirmation → [7] Enhancement & Fix
-```
-
-### Core Features
-
-- **Heavenly Dao Monitoring**: Automatic intervention every 3 minutes to correct deviations
-- **Automatic Completion**: Heavenly Dao monitoring ends automatically when tasks complete
-- **Dynamic Model Allocation**: Automatically selects models based on task complexity (opus/sonnet/haiku)
-- **Parallel Task Detection**: Automatically identifies tasks that can run in parallel
-- **Intelligent Process Simplification**: Simple tasks skip unnecessary phases
-- **Multi-language Support**: Supports 10+ programming languages + WebSearch for dynamic learning
-- **Mythological Dialogue**: Conversations styled after Fengshen Bang mythology
+- **20+ Professional Agents** - Complete role hierarchy from requirements analysis to code review
+- **5 Core Skills** - Bagua Context Collection, Divine Formations, Investiture Lists, Innate Treasures, Complete Workflow
+- **Chan vs Jie Opposition** - Dual-track evaluation with orthodox implementation (Chan) vs innovative proposals (Jie)
+- **Western Dual Review** - Code review (Zhunti) + business review (Jieyin) for comprehensive quality assurance
+- **Dynamic Task Routing** - Automatically schedules optimal agents based on task complexity
 
 ---
 
-## Saints System (Fengshen Bang Lore)
+## Core Concepts
+
+### Workflow Architecture
 
 ```
-                    ┌──────────────┐
-                    │ Taiqing Sage │
-                    │   (Laozi)    │
-                    │  model: opus │
-                    └──────┬───────┘
-                           │
-                           ▼
-                ┌─────────────────┐
-                │ Taiji Diagram   │
-                    │ + Fuxi      │
-                │ haiku + sonnet  │
-                └────────┬────────┘
-                           │
-            ┌──────────────┼──────────────┐
-            │              │              │
-            ▼              ▼              ▼
-      ┌──────────┐  ┌──────────┐  ┌──────────┐
-      │ Tongtian │  │ Yuanshi  │  │   ...    │
-      │  (Jie)   │  │  (Chan)  │  │          │
-      │  opus    │  │  sonnet  │  │          │
-      └────┬─────┘  └────┬─────┘  └──────────┘
-           │             │
-           └──────┬──────┘
-                  │
-                  ▼
-           ┌──────────┐
-           │  Nuwa    │
-           │ (Mending)│
-           │  haiku   │
-           └────┬─────┘
-                │
-                ▼
-           ┌──────────┐
-           │  Zhunti  │
-           │ (Western)│
-           │  opus    │
-           └────┬─────┘
-                │
-                ▼
-           ┌──────────┐
-           │  User    │
-           │Confirm   │
-           └──────────┘
+[1] Requirements    [2] Atomic          [3] Opposing        [4] Testing &
+    Analysis           Breakdown          Development        Verification
+    ↓                  ↓                  ↓                  ↓
+ Taishang         Taiji           Chan vs Jie         Fuxi & Nuwa
+    ↓                  ↓                  ↓                  ↓
+┌──────────────────────────────────────────────────────┐
+│          Western Dual Review (Code + Business)       │
+│          Zhunti + Jieyin                            │
+└──────────────────────────────────────────────────────┘
 ```
+
+### Divine Role Distribution
+
+| Group | Saint | Role | Model | Description |
+|:-----:|:-----:|------|:----:|-------------|
+| Requirements | Taishang | Requirement Control | **opus** | Complexity assessment, requirement understanding |
+| Requirements | Taiji | Atomic Breakdown | **haiku** | Decompose requirements into atomic tasks |
+| Chan | Yuanshi Tianzun | Orthodox Development | sonnet | Standard, compliant implementation |
+| Chan | Guangchengzi et al. | Module Implementation | sonnet | Division of labor among disciples |
+| Jie | Tongtian Jiaozhu | Opposition Proposals | **opus** | Innovative alternative solutions |
+| Jie | Yunxiao/Qiongxiao/Bixiao | Interface/Business/Frontend | sonnet | Treasure collaboration |
+| Jie | Duobao | Core Architecture | **opus** | Complex module breakthrough |
+| Testing | Fuxi | Flaw Detection | sonnet | 8-dimensional test design |
+| Testing | Nuwa | Defect Repair | haiku | Problem fixing |
+| Western | Zhunti | Code Review | **opus** | Code quality, security, performance |
+| Western | Jieyin | Business Review | **opus** | Business logic, process verification |
 
 ---
 
-## Saints and Model Assignment
-
-| Saint | Identity | Role | Phase | Model |
-|-------|----------|------|:-----:|:-----:|
-| Taiqing Sage | Laozi/Daoist Sage | Coordination | [1] | **opus** |
-| Taiji Diagram | Taiqing Artifact | Atomic Breakdown | [2] | **haiku** |
-| Fuxi | Human Emperor | Enhancement | [2][7] | sonnet |
-| Yuanshi Tianzun | Chan Leader | Development | [3] | sonnet |
-| Tongtian Jiaozhu | Jie Leader | Architecture | [3] | **opus** |
-| Nuwa | Mother Earth | Testing | [4] | **haiku** |
-| Zhunti | Western Sage | Code Review | [5] | **opus** |
-| Heavenly Dao | Formless | Monitoring | - | sonnet |
-
----
-
-## Heavenly Dao Monitoring (V1.2)
-
-### Activation
-
-When a task starts, Heavenly Dao monitoring is automatically activated:
+## Project Structure
 
 ```
-CronCreate(cron: "*/3 * * * *", prompt: "/saints-workflow:tiandao", recurring: true)
-```
-
-### Interventions
-
-Every 3 minutes, Heavenly Dao descends to monitor the saints:
-
-| Detection | Trigger | Intervention |
-|-----------|---------|--------------|
-| Idleness | Stalled > 5 min | Thunder催促 |
-| Loop | Repeated > 3 times | Break the cycle |
-| Confusion | Hesitated > 2 times | Divine guidance |
-
-### Completion
-
-When tasks complete, Heavenly Dao automatically withdraws:
-
-```
-CronDelete(job_id: {token})
+.
+├── agents/              # 20+ Divine Agent definitions
+│   ├── taishang.md      # Taishang Laojun - Requirements analysis & control
+│   ├── taig.md          # Taiji - Atomic decomposition
+│   ├── yuanshi.md       # Yuanshi Tianzun - Chan orthodox development
+│   ├── tongtian.md      # Tongtian Jiaozhu - Jie opposition proposals
+│   ├── duobao.md        # Duobao Daoren - Complex modules & architecture
+│   ├── puti.md          # Zhunti Daoren - Code review
+│   ├── fuxi.md          # Fuxi - Eight trigrams test design
+│   ├── wenshu.md        # Wenshu - Cache performance optimization
+│   ├── randing.md       # Randing Daoren - Investiture record keeping
+│   └── ...              # 15+ other divine roles
+│
+├── commands/            # Command entry points
+│   ├── saints.md        # Complete workflow entry
+│   ├── bagua.md         # Eight Trigrams skill
+│   └── ...              # Other commands
+│
+├── skills/              # 5 Core Skills
+│   ├── saints/          # Complete Workflow
+│   │   └── SKILL.md
+│   ├── bagua/           # Eight Trigrams - 8D context collection
+│   │   └── SKILL.md
+│   ├── zhenfa/          # Divine Formation Demonstration - 5 major formations
+│   │   └── SKILL.md
+│   ├── fengshen/        # Investiture List - three-tiered task recording
+│   │   └── SKILL.md
+│   └── fabao/           # Innate Treasures - tool capability mapping
+│       └── SKILL.md
+│
+└── README.md            # Project documentation
 ```
 
 ---
 
-## Installation
+## Usage Guide
 
-### Method 1: Local Plugin Installation (Recommended)
-
-Install directly to the local cache directory without marketplace configuration.
-
-**Step 1: Clone to local cache**
+### Complete Workflow
 
 ```bash
-mkdir -p ~/.claude/plugins/cache/local/saints-workflow
-git clone https://github.com/asdshuaishuai/saints-workflow.git \
-  ~/.claude/plugins/cache/local/saints-workflow/1.2.0
-```
-
-**Step 2: Register the plugin**
-
-Edit `~/.claude/plugins/installed_plugins.json`:
-
-```json
-{
-  "version": 2,
-  "plugins": {
-    "saints-workflow@saints-workflow-local": [
-      {
-        "scope": "user",
-        "installPath": "/home/YOUR_USERNAME/.claude/plugins/cache/local/saints-workflow/1.2.0",
-        "version": "1.2.0",
-        "installedAt": "2026-03-19T00:00:00.000Z",
-        "lastUpdated": "2026-03-19T00:00:00.000Z"
-      }
-    ]
-  }
-}
-```
-
-**Step 3: Enable the plugin**
-
-Edit `~/.claude/settings.json`:
-
-```json
-{
-  "enabledPlugins": {
-    "saints-workflow@saints-workflow-local": true
-  }
-}
-```
-
-**Step 4: Restart Claude Code**
-
-```bash
-claude
-```
-
-### Method 2: Marketplace Installation
-
-**Step 1: Configure marketplace**
-
-Edit `~/.claude/plugins/marketplaces.json`:
-
-```json
-[
-  {
-    "name": "saints-market",
-    "url": "https://github.com/asdshuaishuai/saints-workflow.git",
-    "type": "git"
-  }
-]
-```
-
-**Step 2: Install**
-
-```bash
-/plugin install saints-workflow
-```
-
-### Method 3: Development Testing
-
-```bash
-git clone https://github.com/asdshuaishuai/saints-workflow.git
-claude --plugin-dir ./saints-workflow
-```
-
----
-
-## Usage
-
-### Full Workflow
-
-```
 /saints-workflow:saints Implement user login feature
 ```
 
-### Individual Commands
+Automatically executes:
+1. **Taishang** analyzes requirements
+2. **Taiji** decomposes into atomic tasks
+3. **Chan** proposes orthodox solution, **Jie** proposes innovative alternative
+4. **Fuxi** performs 8D flaw detection
+5. **Nuwa** fixes found issues
+6. **Zhunti** reviews code, **Jieyin** reviews business logic
+7. **Heavenly Dao** confirms completion
 
-| Command | Function | Example |
-|---------|----------|---------|
-| `/saints-workflow:saints` | Full workflow | `/saints-workflow:saints Create login artifact` |
-| `/saints-workflow:taiqing` | Planning only | `/saints-workflow:taiqing Analyze requirements` |
-| `/saints-workflow:taig` | Atomic breakdown | `/saints-workflow:taig Break down module` |
-| `/saints-workflow:fuxi` | Enhancement | `/saints-workflow:fuxi Enhance solution` |
-| `/saints-workflow:yuanshi` | Development | `/saints-workflow:yuanshi Implement feature` |
-| `/saints-workflow:lingbao` | Architecture | `/saints-workflow:lingbao Design system` |
-| `/saints-workflow:nva` | Testing | `/saints-workflow:nva` |
-| `/saints-workflow:puti` | Code review | `/saints-workflow:puti` |
-| `/saints-workflow:tiandao` | Heavenly Dao | `/saints-workflow:tiandao` |
+### Quick Start
 
----
+```bash
+# Use Eight Trigrams to understand project
+/bagua
 
-## Directory Structure
-
-```
-saints-workflow/
-├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
-│
-├── commands/                 # Slash Commands
-│   ├── saints.md            # Main entry
-│   ├── taiqing.md           # Planning
-│   ├── taig.md              # Breakdown
-│   ├── fuxi.md              # Enhancement
-│   ├── yuanshi.md           # Development
-│   ├── lingbao.md           # Architecture
-│   ├── nva.md               # Testing
-│   └── puti.md              # Review
-│
-├── agents/                   # Custom Agents
-│   ├── taiqing.md           # Coordinator (Laozi)
-│   ├── taig.md              # Atomic (Taiji)
-│   ├── fuxi.md              # Enhancer (Fuxi)
-│   ├── yuanshi.md           # Developer (Yuanshi)
-│   ├── lingbao.md           # Architect (Tongtian)
-│   ├── nva.md               # Tester (Nuwa)
-│   ├── puti.md              # Reviewer (Zhunti)
-│   └── tiandao.md           # Monitor (Heavenly Dao)
-│
-├── skills/                   # Skills
-│   ├── saints/
-│   └── tiandao/
-│
-├── README.md
-├── README_EN.md
-├── README_JA.md
-└── LICENSE
+# Try complete workflow
+/saints-workflow:saints Develop payment feature
 ```
 
 ---
 
-## Changelog
+## Architecture
 
-### v1.2.1 (2026-03-19)
-
-- **Docs**: Improved installation instructions with detailed local setup steps
-- **Docs**: Added current environment configuration examples
-- **Docs**: Added marketplace configuration instructions
-- **Docs**: Added English and Japanese translations
-
-### v1.2.0 (2026-03-19)
-
-- **Added**: 3-minute Heavenly Dao monitoring (CronCreate)
-- **Added**: Automatic Heavenly Dao withdrawal on task completion
-- **Added**: Mythological dialogue enhancement
-- **Improved**: All saints now speak in classical Chinese style
-- **Improved**: More automated workflow
-
-### v1.1.0 (2026-03-17)
-
-- **Added**: Team collaboration mode (L3 parallel execution)
-- **Added**: Progress feedback at each phase
-- **Added**: Frontend testing support (Vite, TypeScript)
-- **Improved**: Model allocation strategy
-- **Improved**: Eight Trigrams context collection
-
-### v1.0.0 (2026-03-13)
-
-- Initial release
-- 8 specialized Agents
-- 9 Slash Commands
-- Dynamic model allocation (L1/L2/L3)
-- Multi-language support
+- **20+ Professional Agents** - Each with clear roles and tools
+- **5 Core Skills** - Supporting complete workflow
+- **3-Tier Model System**: opus (complex) > sonnet (standard) > haiku (simple)
+- **Opposition Mode** - Chan (orthodox) vs Jie (innovative) dual-track design
 
 ---
 
 ## License
 
 [MIT License](LICENSE)
+
+> *The Way begets one, one begets two, two beget three, three beget ten thousand things.*
