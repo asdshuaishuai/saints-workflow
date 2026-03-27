@@ -1,23 +1,5 @@
-# 天道命令说明
-
-`tiandao` 调度器负责按策略抽样任务并触发西方双审。仓库中提供了两个示例脚本：
-
-- `scripts/tiandao_scheduler.py`：扫描 `data/atoms` 并生成 `data/reviews/job-*.json` 与 `data/reviews/jobs.json`。
-- `scripts/review_agent.py`：接收 job 文件并模拟生成审查结果 `review-*.json`。
-
-示例：
-
-```bash
-python3 scripts/tiandao_scheduler.py --run-once
-ls data/reviews/T-1234
-python3 scripts/review_agent.py data/reviews/T-1234/job-<id>.json
-```
-
-后续可以将 `tiandao_scheduler.py` 以 Cron 任务运行，并把 `review_agent.py` 替换为实际的审查执行实现（调用准提道人/接引道人 agent）。
-
-GitHub Actions 示例：仓库已提供一个示例工作流 `.github/workflows/tiandao.yml`，会定期运行调度器并将 `data/reviews` 上传为构件。可在 GitHub Actions 页面查看运行结果并下载审查产物。
 ---
-description: 天道 · 洪荒至高监管者，因果循环，拨乱反正
+description: 天道 · 洪荒至高监管者，因果循环，拨乱反正。动态调度西方双审、监察任务进度、干预异常停滞。
 ---
 
 # 天道 · 因果监察
@@ -27,7 +9,43 @@ description: 天道 · 洪荒至高监管者，因果循环，拨乱反正
 
 ## 执行
 
-召唤天道进行因果监察：
+召唤天道进行因果监察和审查调度：
+
+```
+/saints-workflow:tiandao 监察当前任务进度并调度西方双审
+```
+
+## 功能
+
+- **动态调度**: 按优先级和风险等级调度准提/接引进行双重审查
+- **进度监察**: 检测懈怠、轮回、迷途等异常
+- **干预引导**: 强制干预引导正向，确保任务推进
+- **因果循环**: 记录任务流转状态，反馈审查结论
+
+## 使用场景
+
+1. **常规审查调度**
+   ```
+   /saints-workflow:tiandao 审查完成的登录模块
+   ```
+
+2. **高风险项目干预**
+   ```
+   /saints-workflow:tiandao 登录模块出现性能问题，需要紧急审查
+   ```
+
+3. **进度缓滞催促**
+   ```
+   /saints-workflow:tiandao 任务已停滞2小时，需要审查并重新分配
+   ```
+
+## 与西方双审联动
+
+天道自动调度：
+- **准提道人** (`/saints-workflow:puti`) - 代码审查
+- **接引道人** (`/saints-workflow:jieyin`) - 业务审查
+
+后续可配置 Cron 定时执行天道调度（需要扩展支持）。
 
 ```
 Task(tiandao)
