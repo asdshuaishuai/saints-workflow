@@ -202,6 +202,32 @@
 
 ## 使用指南
 
+更多使用示例与快速上手请参阅 `docs/USAGE.md`。
+
+## 审查与调度 — 快速上手
+
+本项目提供了原子化、调度与审查的样例脚本，供本地运行和调试：
+
+- 原子化（太上老君）：`scripts/atomize.py`，将 `specs/*.md` 转为 `data/atoms/{task_id}.json`。
+- 天道调度器：`scripts/tiandao_scheduler.py`，扫描 `data/atoms` 并生成 `data/reviews/{task_id}/job-*.json`。
+- 审查代理（示例）：`scripts/review_agent.py`，处理 job 并输出 `review-*.json`。
+
+示例命令：
+
+```bash
+python3 scripts/atomize.py --spec specs/example_spec.md --task-id T-1234 --owner @someone
+python3 scripts/tiandao_scheduler.py --run-once
+python3 scripts/review_agent.py data/reviews/T-1234/job-<id>.json
+```
+
+产物位置：
+
+- 原子化输出：`data/atoms/{task_id}.json`
+- 审查作业：`data/reviews/{task_id}/job-*.json`
+- 审查结果：`data/reviews/{task_id}/review-*.json`
+
+更多设计与流程请参阅 `docs/review-design.md`。
+
 ### 完整工作流
 
 ```bash
