@@ -1,0 +1,53 @@
+{
+  "task_id": "T-1234",
+  "atoms": [
+    {
+      "id": "T-1234-334bb90f",
+      "title": "用户登录与鉴权",
+      "description": "实现用户登录接口，支持用户名/密码与 OAuth 2.0。要求：",
+      "owner": "@someone",
+      "院子": "",
+      "priority": "P2",
+      "complexity": "M",
+      "estimate": null,
+      "coupling_keys": [],
+      "acceptance_criteria": [
+        "支持密码登录",
+        "支持第三方 OAuth 登录（Google, GitHub）",
+        "返回 JWT 并设置合适的过期策略"
+      ],
+      "seq": 1
+    },
+    {
+      "id": "T-1234-b86d678c",
+      "title": "注册流程",
+      "description": "用户注册需要验证码流程，邮箱验证 + 密码强度校验。",
+      "owner": "@someone",
+      "院子": "",
+      "priority": "P2",
+      "complexity": "M",
+      "estimate": null,
+      "coupling_keys": [],
+      "acceptance_criteria": [
+        "邮箱发送验证码",
+        "密码校验策略"
+      ],
+      "seq": 2
+    },
+    {
+      "id": "T-1234-8ab4f416",
+      "title": "迁移注意事项",
+      "description": "注意旧系统 session 的兼容",
+      "owner": "@someone",
+      "院子": "",
+      "priority": "P2",
+      "complexity": "M",
+      "estimate": null,
+      "coupling_keys": [],
+      "acceptance_criteria": [
+        "需要提供回退接口"
+      ],
+      "seq": 3
+    }
+  ]
+}
