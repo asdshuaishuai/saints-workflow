@@ -1,0 +1,32 @@
+name: Tiandao Scheduler
+
+on:
+  schedule:
+    # 每 5 分钟运行一次示例调度（可根据需要调整）
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  run-scheduler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install requirements (none)
+        run: echo 'no-op'
+
+      - name: Run Tiandao scheduler
+        run: |
+          python3 scripts/tiandao_scheduler.py --run-once
+
+      - name: Upload review artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiandao-reviews
+          path: data/reviews
