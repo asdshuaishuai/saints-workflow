@@ -206,27 +206,33 @@
 
 ## 审查与调度 — 快速上手
 
-本项目提供了原子化、调度与审查的样例脚本，供本地运行和调试：
+通过圣人工作流实现多角度、动态化的审查：
 
-- 原子化（太上老君）：`scripts/atomize.py`，将 `specs/*.md` 转为 `data/atoms/{task_id}.json`。
-- 天道调度器：`scripts/tiandao_scheduler.py`，扫描 `data/atoms` 并生成 `data/reviews/{task_id}/job-*.json`。
-- 审查代理（示例）：`scripts/review_agent.py`，处理 job 并输出 `review-*.json`。
+### 启动原子化分析
+```
+/saints-workflow:taishang 分析用户登录需求，原子化拆分
+```
+太上老君负责需求分析，输出原子清单、优先级、复杂度。
 
-示例命令：
+### 天道动态调度审查
+```
+/saints-workflow:tiandao 对完成的登录模块进行审查调度
+```
+天道监察全局进度，按策略调度西方双审（准提+接引）。
 
-```bash
-python3 scripts/atomize.py --spec specs/example_spec.md --task-id T-1234 --owner @someone
-python3 scripts/tiandao_scheduler.py --run-once
-python3 scripts/review_agent.py data/reviews/T-1234/job-<id>.json
+### 西方双重审查
+
+**代码审查**：
+```
+/saints-workflow:puti 审查登录模块代码质量、安全、性能
 ```
 
-产物位置：
+**业务审查**：
+```
+/saints-workflow:jieyin 审查登录流程的业务逻辑、流程验证
+```
 
-- 原子化输出：`data/atoms/{task_id}.json`
-- 审查作业：`data/reviews/{task_id}/job-*.json`
-- 审查结果：`data/reviews/{task_id}/review-*.json`
-
-更多设计与流程请参阅 `docs/review-design.md`。
+更多设计与流程请参阅 `docs/review-design.md` 和 `docs/USAGE.md`。
 
 ### 完整工作流
 
