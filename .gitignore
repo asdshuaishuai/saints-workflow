@@ -9,3 +9,8 @@
 *.tmp
 *.bak
 *.lock
+
+# 运行时产物（审查/原子化生成）
+data/atoms/
+data/reviews/
+specs/example_spec.md
