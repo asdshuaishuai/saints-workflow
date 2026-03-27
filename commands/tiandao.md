@@ -1,3 +1,19 @@
+# 天道命令说明
+
+`tiandao` 调度器负责按策略抽样任务并触发西方双审。仓库中提供了两个示例脚本：
+
+- `scripts/tiandao_scheduler.py`：扫描 `data/atoms` 并生成 `data/reviews/job-*.json` 与 `data/reviews/jobs.json`。
+- `scripts/review_agent.py`：接收 job 文件并模拟生成审查结果 `review-*.json`。
+
+示例：
+
+```bash
+python3 scripts/tiandao_scheduler.py --run-once
+ls data/reviews/T-1234
+python3 scripts/review_agent.py data/reviews/T-1234/job-<id>.json
+```
+
+后续可以将 `tiandao_scheduler.py` 以 Cron 任务运行，并把 `review_agent.py` 替换为实际的审查执行实现（调用准提道人/接引道人 agent）。
 ---
 description: 天道 · 洪荒至高监管者，因果循环，拨乱反正
 ---
