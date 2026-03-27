@@ -1,0 +1,119 @@
+{
+  "domains": [
+    {
+      "id": "auth",
+      "name": "身份认证",
+      "owner": "@auth-owner",
+      "support_contact": "@auth-support",
+      "tech_stack": ["backend", "oauth", "jwt"],
+      "dependencies": ["cache", "db"],
+      "components": [
+        "login",
+        "token_refresh",
+        "user_registration",
+        "password_reset",
+        "mfa"
+      ],
+      "release_cycle": "week"
+    },
+    {
+      "id": "payment",
+      "name": "支付结算",
+      "owner": "@payment-owner",
+      "support_contact": "@payment-support",
+      "tech_stack": ["backend", "rpc", "lua"],
+      "dependencies": ["auth", "db", "mq", "log"],
+      "components": [
+        "payment_gateway",
+        "order_settlement",
+        "refund_handler",
+        "reconciliation",
+        "invoice_generation"
+      ],
+      "release_cycle": "sprint"
+    },
+    {
+      "id": "database",
+      "name": "数据存储",
+      "owner": "@db-owner",
+      "support_contact": "@db-dba",
+      "tech_stack": ["mysql", "redis", "etcd"],
+      "dependencies": [],
+      "components": [
+        "user_table",
+        "order_table",
+        "transaction_log",
+        "metadata_store",
+        "cache_layer"
+      ],
+      "release_cycle": "on-demand"
+    },
+    {
+      "id": "search",
+      "name": "搜索引擎",
+      "owner": "@search-owner",
+      "support_contact": "@search-support",
+      "tech_stack": ["elasticsearch", "python", "golang"],
+      "dependencies": ["database", "mq"],
+      "components": [
+        "indexing",
+        "query_engine",
+        "faceting",
+        "auto_complete",
+        "analytics"
+      ],
+      "release_cycle": "week"
+    },
+    {
+      "id": "mq",
+      "name": "消息队列",
+      "owner": "@mq-owner",
+      "support_contact": "@mq-support",
+      "tech_stack": ["rabbitmq", "kafka"],
+      "dependencies": ["database"],
+      "components": [
+        "producer",
+        "consumer",
+        "routing",
+        "dead_letter_queue"
+      ],
+      "release_cycle": "on-demand"
+    },
+    {
+      "id": "log",
+      "name": "日志系统",
+      "owner": "@log-owner",
+      "support_contact": "@log-support",
+      "tech_stack": ["elk", "golang"],
+      "dependencies": ["database"],
+      "components": [
+        "log_collection",
+        "parsing",
+        "storage",
+        "search",
+        "alerting"
+      ],
+      "release_cycle": "on-demand"
+    },
+    {
+      "id": "cache",
+      "name": "缓存中间件",
+      "owner": "@cache-owner",
+      "support_contact": "@cache-support",
+      "tech_stack": ["redis", "golang"],
+      "dependencies": ["database"],
+      "components": [
+        "cache_manager",
+        "ttl_handler",
+        "eviction_policy",
+        "cluster_sync"
+      ],
+      "release_cycle": "sprint"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2024-03-27",
+    "description": "圣人工作流 - 区域划分与责任制配置"
+  }
+}
